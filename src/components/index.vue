@@ -8,16 +8,16 @@
 						<el-menu 
 						mode="horizontal" 
 						:default-active="activeIndex" 
-						@select="handmenu">
-							<el-menu-item index="1">首頁</el-menu-item>
-							<el-menu-item index="2">電影</el-menu-item>
-							<el-menu-item index="3">影院</el-menu-item>
+						@select="handmenu" router>
+							<el-menu-item index="/">首頁</el-menu-item>
+							<el-menu-item index="/movie">電影</el-menu-item>
+							<el-menu-item index="/cinema">影院</el-menu-item>
 						</el-menu>
 					</div></el-col>
 					<el-col :span="6"><div ></div></el-col>
 				</el-row>			
 			</el-header>
-			<el-main>Main</el-main>
+			<el-main><router-view/></el-main>
 			<el-footer>Footer</el-footer>
 		</el-container>	
 	</div>
@@ -27,7 +27,7 @@ import title from '@/assets/title.png'
 export default {
     data(){
         return{
-            activeIndex: '1',
+            activeIndex: '/',
             title:title,
         }
     },
@@ -38,5 +38,14 @@ export default {
     },
 }
 </script>
+<style scoped>
+a { 
+text-decoration: none; 
+}
+.router-link-active {
+    text-decoration: none;
+}
+</style>
+
 
 
