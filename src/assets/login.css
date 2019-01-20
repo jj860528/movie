@@ -1,0 +1,119 @@
+
+
+html{
+    margin: 0; 
+	padding: 0;
+    border: 0;
+    
+}
+
+#windo{
+    padding:30px;
+    position:relative;
+    top:150px;
+    margin: auto;
+    width:450px; 
+    height: 450px; 
+    background-color: rgb(255, 255, 255); 
+    box-shadow:0px 0px 12px 5px
+     rgba(214, 214, 236, 0.5);
+     border-radius:20px
+}
+#title{
+    width:auto;
+    height:auto;
+    max-width:100%;
+    max-height:100%;
+    display:block;
+    margin:auto;
+}
+.subtitle{
+    white-space:nowrap;
+    color:#389cfa;
+    text-align: center;
+    margin:10px;
+    font-size: 20px;
+}
+.logintitle{
+    color:#1A81EB;
+    text-align: center;
+    margin:30px;
+    font-size:25px;
+}
+.windo2{
+    border-radius:0 0 20px 20px;
+    height:15%;
+    border-top-style:solid;
+    border-width:1px;
+    margin:80px -30px;
+    position:relative;
+    bottom:0;
+    background-color:rgb(220, 226, 235);
+}
+.miniwindo2{
+   width: 100%;
+   height:100%;
+   position: absolute;
+   top:10px;
+}
+.windo2Text{
+    margin:0 15px;
+    color:#357BC2;
+    text-decoration:none;
+}
+.regsteredTitle{
+    color:#1A81EB;
+    text-align: center;
+    margin:10px;
+    font-size:25px;
+}
+.regsteredwindow2{
+    position:relative;
+    bottom:15px;
+}
+@media screen and (max-width: 601px)and (max-width: 1050px){
+    #windo{
+        margin: -300px auto;
+        width:290px; 
+        height: 400px; 
+        background-color: none;
+         border-radius:none 
+    }
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+    #login{
+        position:absolute;width:100%;height:100%;top:0;left:0;overflow-y:auto;
+        background: #000 url(backimg-mini.jpg)  center center fixed no-repeat;
+    -moz-background-size: cover;
+    background-size: cover;
+    }
+    #windo{
+        margin:-130px auto;
+        width:290px; 
+        height: 400px; 
+        background-color:none;
+         border-radius:none
+    }
+    .subtitle{
+        font-size: 15px;
+    }
+    .windo2{
+        border-radius:0 0 20px 20px;
+        height:15%;
+        border-top-style:solid;
+        border-width:1px;
+        margin:50px -30px;
+        position:relative;
+        bottom:0;
+        background-color:rgb(220, 226, 235);
+    }
+    .regsteredwindow2{
+        position:relative;
+        bottom:33px;
+    }
+}
+
+.el-zoom-in-center-leave-active { transition: opacity 0s }
+.el-zoom-in-center-enter-active  { transition: opacity 2s }
+
+
