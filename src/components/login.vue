@@ -3,7 +3,7 @@
         <el-row type="flex" class="row-bg" justify="center">
             <el-col :span="24" >
                 <div id="windo">
-                    <a href = "index.html" alt = "回首頁"><img :src="title" id = "title" alt = "UU電影" /></a> 
+                    <router-link to = "/"><img :src="title" id = "title" alt = "UU電影" /></router-link>
                     <el-row type="flex" class="row-bg" justify="center">
                         <el-col :span="24">
                             <div class = "subtitle">註冊UU電影 ,訂票就是如此簡單</div>
@@ -208,7 +208,10 @@ export default {
 <style scoped>
 
 #login{
-    position:absolute;width:100%;height:100%;top:0;left:0;overflow-y:auto;
+    position:absolute;
+    width:100%;height:100%;
+    top:0;left:0;
+    overflow-y:auto;
     background: #000 url(../assets/backimg.jpg)  center center fixed no-repeat;
     -moz-background-size: cover;
     background-size: cover;

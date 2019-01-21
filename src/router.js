@@ -32,7 +32,6 @@ export default new Router({
           path: "/cinema",
           name: "cinema",
           component: cinema
-
         }
       ]
     },
