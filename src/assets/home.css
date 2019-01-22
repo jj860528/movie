@@ -13,6 +13,23 @@
 }
 .today{
     font-size: 26px;
-    text-align:left;
+    text-align:right;
     color:#ef4238;
+}
+.movie{
+    margin: 15px;
+}
+.movieTitleWindow{
+    width: 100%;
+    vertical-align: inherit;
+}
+.movie-txt{
+    vertical-align: inherit;
+    /*white-space: nowrap;*/
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    word-break: break-all; /* 追加这一行代码 */
 }

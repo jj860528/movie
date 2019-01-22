@@ -31,14 +31,14 @@
 					</el-col>
 				</el-row>
 			</el-header>
-			<el-main style = " margin: 50px 0px 0px 0px;">
+			<el-main style = " margin: 40px 0px 0px 0px;">
 				<el-row type="flex" justify="center" :gutter="24" >
 					<el-col :xl="16" :md = "16" :xs="24">
 						<router-view/>
 					</el-col>
 				</el-row>
 			</el-main>
-			<el-footer class = "footer" height = "60px">
+			<el-footer class = "footer" height="auto">
 				<p class = "footer-txt" @click="movie">轉載內容版權歸作者及來源網站所有，本站原創內容轉載請註明來源，商業媒體及紙媒請先聯繫：UUmovie@gmail.com</p>
 				<p class = "footer-mix">本網站內容享有著作權，禁止侵害，違者必究。 © 2019 UUmovie All Rights Reserved.</p>
 			</el-footer>

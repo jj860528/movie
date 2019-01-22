@@ -1,25 +1,27 @@
 <template>
     <div>
         <el-row >
-            <el-col :span="16">
+            <el-col :xl="16" :md="16" :xs="24">
                 <el-row>
                     <el-col :span="12"><p class = "hotMovie">熱門電影</p></el-col>
                     <el-col :span="6"><p class = "allMovie">全部》</p></el-col>
                 </el-row>
                 <el-row>
-                    <el-col :span="6" v-for = "(id , o) in hotMovie" :key="o">
-                        <el-card :body-style="{ padding: '0px' }" id = "id.id">
-                            <img :src="'https://image.tmdb.org/t/p/w500/'+id.poster_path" class="image">
+                    <el-col :xl="5" :md="5" :xs="9" v-for = "(movie , o) in hotMovie" :key="o" class = "movie">
+                        <el-card :body-style="{ padding: '0px' }" :id='movie.id'>
+                            <img :src="'https://image.tmdb.org/t/p/w500/'+movie.poster_path" class="image">
                             <div style="padding: 14px;">
-                                <span>{{id.title}}</span>
-                                <div class="bottom clearfix">
-                                </div>
+                                <el-tooltip  effect="dark" :content="movie.title" placement="top">
+                                    <div  class="movieTitleWindow">
+                                        <span class = "movie-txt">{{movie.title}}</span>
+                                    </div>
+                                </el-tooltip>
                             </div>
                         </el-card>
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :span="4" :offset="4">
+            <el-col :xl="4" :md="4">
                 <p class = "today">今日票房</p>
             </el-col>
         </el-row>
@@ -32,7 +34,9 @@ import "../assets/home.css"
 export default {
     data() {
         return {
+            content:"",
             src:"",
+            id:"",
             hotMovie:new Array()
         }
     },
@@ -76,6 +80,7 @@ export default {
 
   .image {
     width: 100%;
+    height: 250px;
     display: block;
   }
 
