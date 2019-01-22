@@ -1,0 +1,18 @@
+.hotMovie{
+    font-size: 26px;
+    text-align:left;
+    color:#ef4238;
+}
+.allMovie{
+    font-size: 17px;
+    text-align:right;
+    color:#ef4238;
+    position:absolute;
+    bottom:0px;
+    right:0px;
+}
+.today{
+    font-size: 26px;
+    text-align:left;
+    color:#ef4238;
+}
