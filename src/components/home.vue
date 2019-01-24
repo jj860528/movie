@@ -8,7 +8,7 @@
                 </el-row>
                 <el-row>
                     <el-col :xl="5" :md="5" :xs="9" v-for = "(movie , o) in hotMovie" :key="o" class = "movie">
-                        <el-card :body-style="{ padding: '0px' }" :id='movie.id'>
+                        <el-card :body-style="{ padding: '0px' }" :id='movie.id' shadow="hover">
                             <img :src="'https://image.tmdb.org/t/p/w500/'+movie.poster_path" class="image">
                             <div style="padding: 14px;">
                                 <el-tooltip  effect="dark" :content="movie.title" placement="top">
