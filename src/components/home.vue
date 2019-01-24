@@ -2,9 +2,9 @@
     <div>
         <el-row >
             <el-col :xl="16" :md="16" :xs="24">
-                <el-row>
-                    <el-col :span="12"><p class = "hotMovie">熱門電影</p></el-col>
-                    <el-col :span="6"><p class = "allMovie">全部》</p></el-col>
+                <el-row type="flex" justify="space-around" style = "align-items: baseline; ">
+                    <el-col :span="12"><div class = "hotMovie-title"><p>熱門電影</p></div ></el-col>
+                    <el-col :span="6"><div class = "allMovie"><p>全部》</p></div ></el-col>
                 </el-row>
                 <el-row>
                     <el-col :xl="5" :md="5" :xs="9" v-for = "(movie , o) in hotMovie" :key="o" class = "movie">
@@ -18,10 +18,18 @@
                                 </el-tooltip>
                             </div>
                         </el-card>
+                        <div class = "hover-movie">
+                            <div>
+                                <el-button class = "movie-detailed" type="info" size="mini" plain round>電影詳情 <i class = "el-icon-star-on"></i></el-button>
+                            </div>
+                            <div>
+                                 <el-button class = "movie-go" type="info" size="mini" plain round>前往訂票 <i class = "el-icon-d-arrow-right"></i></el-button>                        
+                            </div>
+                        </div>
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :xl="4" :md="4">
+            <el-col :xl="4" :md="4" class = "hidden-md-and-down">
                 <p class = "today">今日票房</p>
             </el-col>
         </el-row>
@@ -63,35 +71,5 @@ export default {
 }
 </script>
 <style scoped>
-.time {
-    font-size: 13px;
-    color: #999;
-  }
-  
-  .bottom {
-    margin-top: 13px;
-    line-height: 12px;
-  }
-
-  .button {
-    padding: 0;
-    float: right;
-  }
-
-  .image {
-    width: 100%;
-    height: 250px;
-    display: block;
-  }
-
-  .clearfix:before,
-  .clearfix:after {
-      display: table;
-      content: "";
-  }
-  
-  .clearfix:after {
-      clear: both
-  }
 
 </style>
