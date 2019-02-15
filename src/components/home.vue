@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-row >
+        <el-row :gutter="24">
             <el-col :xl="16" :md="16" :xs="24">
                 <el-row type="flex" justify="space-around" style = "align-items: baseline; ">
                     <el-col :span="12"><div class = "hotMovie-title"><p>熱門電影</p></div ></el-col>
@@ -29,8 +29,13 @@
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :xl="4" :md="4" class = "hidden-md-and-down">
+            <el-col :xl="6" :offset="1" class = "hidden-md-and-down">
                 <p class = "today">今日票房</p>
+                <ol>
+                    <li v-for = "(todayHots ,o) in  todayHot" :key = "o" class = "today-text">
+                        {{todayHots.title}}
+                    </li>
+                </ol>
             </el-col>
             <el-col :xl="16" :md="16" :xs="24">
                 <el-row type="flex" justify="space-around" style = "align-items: baseline; ">
@@ -52,6 +57,14 @@
                     </el-col>
                 </el-row>
             </el-col>
+            <el-col :xl="6" :offset="1" class = "hidden-md-and-down">
+                <p class = "today" style = "color:#ffb400!important">最受期待</p>
+                <ol>
+                    <li v-for = "(futureMovies ,o) in  futureMovie" :key = "o" class = "today-text">
+                        {{futureMovies.title}}
+                    </li>
+                </ol>
+            </el-col>
         </el-row>
     </div>
 </template>
@@ -67,7 +80,8 @@ export default {
             src:"",
             id:"",
             hotMovie:new Array(),
-            futureMovie:new Array()
+            futureMovie:new Array(),
+            todayHot:new Array(),
         }
     },
     methods:{
@@ -84,6 +98,7 @@ export default {
             arr.length = 8
             this.hotMovie = arr;
             this.loading = false;
+            
         }).catch(function(err){
             console.log(err)
         })
@@ -95,6 +110,18 @@ export default {
             arr.length = 8
             this.futureMovie = arr;
             this.loading = false;
+        }).catch(function(err){
+            console.log(err)
+        })
+        //todayHot
+        var urlT =
+            "https://api.themoviedb.org/3/movie/top_rated?api_key=" + this.apiKey + "&language=zh-tw&page=1";
+            this.$ajax.post(urlT).then((data) =>{
+            var arr = data.data.results;
+            arr.length = 10
+            this.todayHot = arr;
+            this.loading = false;
+            
         }).catch(function(err){
             console.log(err)
         })

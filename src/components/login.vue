@@ -214,7 +214,7 @@ export default {
     overflow-y:auto;
     background: #000 url(../assets/backimg.jpg)  center center fixed no-repeat;
     -moz-background-size: cover;
-    background-size: co
+    background-size: cover;
     
 }
 .el-zoom-in-center-leave-active { transition: opacity 0s }

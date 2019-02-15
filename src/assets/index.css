@@ -7,8 +7,8 @@ text-decoration: none;
 .logo{
     display: inline-block;
     width: 146px;
-    height:38px;
-    margin: 0px 0px -10px 0px;
+    height:35px;
+    margin: 0px 0px -5px 0px;
     background:#fff url(./title.png) center center fixed no-repeat;
 }
 .logo-mini{

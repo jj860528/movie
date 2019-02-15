@@ -24,8 +24,14 @@
 }
 .today{
     font-size: 26px;
-    text-align:right;
+    text-align:left;
     color:#ef4238;
+    margin: 25px 0px 30px 25px;
+}
+.today-text{
+    line-height: 35px;
+    font-size: 18px;
+    color: #333;
 }
 .movie{
     position: relative;
