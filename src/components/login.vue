@@ -214,9 +214,10 @@ export default {
     overflow-y:auto;
     background: #000 url(../assets/backimg.jpg)  center center fixed no-repeat;
     -moz-background-size: cover;
-    background-size: cover;
+    background-size: co
     
 }
 .el-zoom-in-center-leave-active { transition: opacity 0s }
 .el-zoom-in-center-enter-active  { transition: opacity 2s }
 </style>
+// TODO: 分割線變淡
