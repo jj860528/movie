@@ -57,7 +57,6 @@ export default {
     },
     methods: {
         handmenu(key, keyPath){
-            console.log(key, keyPath);
 		},
 		//data from TMDB
 		movie(){
@@ -68,13 +67,19 @@ export default {
 			var urlT =
 			  "https://api.themoviedb.org/3/movie/popular?api_key=" + apiKey + "&language=zh-tw&page=1";
 			this.$ajax.post(urlT).then(function(data){
-				console.log(data.data.results)
 			}).catch(function(err){
 				console.log(err)
 			})
 
 		}
-    },
+	},
+	watch: {
+		'$route' (to, from) {
+		// 对路由变化作出响应...
+			console.log(to.path)
+			this.activeIndex = to.path
+		}
+  	}
 }
 </script>
 <style scoped>

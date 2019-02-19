@@ -36,7 +36,6 @@ export default {
             this.$ajax.post(urlT).then((data) =>{
             var arr = data.data.results;
             this.hotMovie = arr;
-            console.log(arr)
             this.loading = false;
             
         }).catch(function(err){
