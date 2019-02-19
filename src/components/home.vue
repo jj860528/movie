@@ -4,7 +4,13 @@
             <el-col :xl="16" :md="16" :xs="24">
                 <el-row type="flex" justify="space-around" style = "align-items: baseline; ">
                     <el-col :span="12"><div class = "hotMovie-title"><p>熱門電影</p></div ></el-col>
-                    <el-col :span="6"><div class = "allMovie"><p>全部》</p></div ></el-col>
+                    <el-col :span="6">
+                        <div class = "allMovie">
+                            <router-link to = "/movie">
+                                <p style = "color:#ef4238" @click="allMovie">全部》</p>
+                            </router-link>
+                        </div >
+                    </el-col>
                 </el-row>
                 <el-row>
                     <el-col :xl="5" :md="5" :xs="9" v-for = "(movie , o) in hotMovie" :key="o" class = "movie" v-loading.fullscreen.lock="loading">
@@ -82,11 +88,17 @@ export default {
             hotMovie:new Array(),
             futureMovie:new Array(),
             todayHot:new Array(),
+            activeIndex:"/movie"
         }
     },
     methods:{
         movie(){
             //data from TMDB
+        },
+        allMovie(){
+            this.$store.commit('indexPage', "/movie");
+
+            console.log(this.$store.state.indexPage)
         }
     },
     created: function () {

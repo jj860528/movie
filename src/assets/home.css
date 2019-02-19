@@ -84,6 +84,7 @@
     vertical-align: inherit;
 }
 .movie-txt{
+    text-align: center;
     vertical-align: inherit;
     /*white-space: nowrap;*/
     overflow: hidden;
