@@ -26,7 +26,7 @@
                         </el-card>
                         <div class = "hover-movie">
                             <div>
-                                <el-button class = "movie-detailed" type="warning" size="mini" plain round>電影詳情 <i class = "el-icon-star-on"></i></el-button>
+                                <!--<el-button class = "movie-detailed" type="warning" size="mini" plain round>電影詳情 <i class = "el-icon-star-on"></i></el-button>-->
                             </div>
                             <div>
                                  <el-button class = "movie-go" type="danger" size="mini" plain round>前往訂票 <i class = "el-icon-d-arrow-right"></i></el-button>                        
@@ -115,7 +115,7 @@ export default {
             console.log(err)
         })
         //即將上映
-        var urlT =
+        const urlT =
             "https://api.themoviedb.org/3/movie/upcoming?api_key=" + this.apiKey + "&language=zh-tw&page=1";
             this.$ajax.post(urlT).then((data) =>{
             var arr = data.data.results;
@@ -126,7 +126,7 @@ export default {
             console.log(err)
         })
         //todayHot
-        var urlT =
+        const urlT =
             "https://api.themoviedb.org/3/movie/top_rated?api_key=" + this.apiKey + "&language=zh-tw&page=1";
             this.$ajax.post(urlT).then((data) =>{
             var arr = data.data.results;
@@ -138,8 +138,5 @@ export default {
             console.log(err)
         })
     }
-}
+};
 </script>
-<style scoped>
-
-</style>

@@ -3,7 +3,7 @@
         <el-col :span="0"></el-col>
         <el-col :span="24">
             <el-row>
-                <el-col :span="4" v-for = "(movie , o) in hotMovie" :key="o" style = "border-style:none">
+                <el-col :xl="4" :md="4" :xs="12" v-for = "(movie , o) in hotMovie" :key="o" style = "border-style:none">
                     <el-card :body-style="{ padding: '0px'}" :id='movie.id' shadow="hover" class = "movie">
                         <div slot="header" class="clearfix">
                             <el-tooltip  effect="dark" :content="movie.title" placement="top" >

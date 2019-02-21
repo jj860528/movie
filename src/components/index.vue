@@ -7,7 +7,9 @@
 						<el-row type="flex" justify="space-between" style = "text-align : center; " >
 							<el-col :xl="4" :md = "3" :xs="4">
 								<img :src="title" alt="UU電影" class = "logo">
-								<img src="../assets/mini-title.png" alt="UU電影" class = "logo-mini">
+								<router-link to="/">
+									<img src="../assets/mini-title.png" alt="UU電影" class = "logo-mini">
+								</router-link>
 							</el-col>
 							<el-col :xl="16" :md = "10" :xs="18">
 								<el-menu 
@@ -70,20 +72,21 @@ export default {
 			}).catch(function(err){
 				console.log(err)
 			})
-
 		}
 	},
+	created: function(){
+		this.$router.push('/')
+	},
 	watch: {
-		'$route' (to, from) {
+		'$route' (to) {
 		// 对路由变化作出响应...
 			console.log(to.path)
 			this.activeIndex = to.path
 		}
   	}
 }
+
 </script>
-<style scoped>
-</style>
 
 
 

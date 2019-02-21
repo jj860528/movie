@@ -28,7 +28,12 @@
                             <el-row type="flex" class="windo2" justify="center">
                                 <div class = "miniwindo2">
                                     <el-col :span="12"><div style = "text-align:right;">還沒有帳號嗎?</div></el-col>
-                                    <el-col :span="12"><a  href="#" class = "windo2Text" @click = "Switch">進行註冊</a></el-col>
+                                    <el-col :span="12">
+                                        <el-row>
+                                            <el-col :span="9"><a  href="#" class = "windo2Text" @click = "Switch">進行註冊</a></el-col>
+                                            <el-col :span="10"><router-link to="/" style = "text-align:left;">回首頁</router-link></el-col>
+                                        </el-row>
+                                    </el-col>
                                 </div>
                             </el-row>  
                         </div>
