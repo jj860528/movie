@@ -13,7 +13,7 @@
                     </el-col>
                 </el-row>
                 <el-row>
-                    <el-col :xl="5" :md="5" :xs="9" v-for = "(movie , o) in hotMovie" :key="o" class = "movie" v-loading.fullscreen.lock="loading">
+                    <el-col :xl="5" :md="5" :xs="9" v-for = "(movie , o) in hotMovie" :key="o" class = "movie" v-loading.fullscreen.lock="loading" >
                         <el-card :body-style="{ padding: '0px' }" :id='movie.id' shadow="hover">
                             <img :src="'https://image.tmdb.org/t/p/w500/'+movie.poster_path" class="image">
                             <div style="padding: 14px;">
@@ -35,7 +35,7 @@
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :xl="6" :offset="1" class = "hidden-md-and-down">
+            <el-col :xl="6" :xs="0" :offset="1">
                 <p class = "today">今日票房</p>
                 <ol>
                     <li v-for = "(todayHots ,o) in  todayHot" :key = "o" class = "today-text">
@@ -63,7 +63,7 @@
                     </el-col>
                 </el-row>
             </el-col>
-            <el-col :xl="6" :offset="1" class = "hidden-md-and-down">
+            <el-col :xl="6" :xs="0" :offset="1">
                 <p class = "today" style = "color:#ffb400!important">最受期待</p>
                 <ol>
                     <li v-for = "(futureMovies ,o) in  futureMovie" :key = "o" class = "today-text">

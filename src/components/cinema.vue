@@ -5,6 +5,7 @@
         @current-change="handleCurrentChange"
         size="medium">
             <el-table-column
+                fixed
                 column-key="id"
                 prop="cinema"
                 label="影院"
@@ -16,11 +17,13 @@
                 width="260">
             </el-table-column>
             <el-table-column
+                fixed
                 prop="add"
                 label="地址"
                 width="500">
             </el-table-column>
             <el-table-column
+                fixed="right"
                 prop="id"
                 label="購票"
                 width="160">
