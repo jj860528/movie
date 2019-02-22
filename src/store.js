@@ -5,7 +5,9 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
-    indexPage: "/"
+    indexPage: "/",
+    movieID: "",
+    cinemaID: ""
   },
   mutations: {
     indexPage(state, page) {

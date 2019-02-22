@@ -74,7 +74,7 @@ export default {
 		}
 	},
 	created: function(){
-		this.$router.push('/')
+		this.activeIndex = this.$route.path
 	},
 	watch: {
 		'$route' (to) {
