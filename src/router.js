@@ -1,12 +1,11 @@
 import Vue from "vue";
 import Router from "vue-router";
-import test from "@/components/test.vue";
-import login from "@/components/login.vue";
-import index from "@/components/index.vue";
-import movie from "@/components/movie.vue";
-import home from "@/components/home.vue";
-import cinema from "@/components/cinema.vue";
-import booking from "@/components/booking.vue";
+import login from "@/views/login.vue";
+import index from "@/views/index.vue";
+import movie from "@/views/movie.vue";
+import home from "@/views/home.vue";
+import cinema from "@/views/cinema.vue";
+import booking from "@/views/booking.vue";
 
 Vue.use(Router);
 
@@ -40,11 +39,6 @@ export default new Router({
           component: booking
         }
       ]
-    },
-    {
-      path: "/test",
-      name: "test",
-      component: test
     },
     {
       path: "/login",

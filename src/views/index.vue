@@ -6,8 +6,8 @@
           <el-col :xl="16" :md="16" :xs="24">
             <el-row type="flex" justify="space-between" style="text-align : center; ">
               <el-col :xl="4" :md="3" :xs="4">
-                <img :src="title" alt="UU電影" class="logo">
                 <router-link to="/">
+                <img :src="title" alt="UU電影" class="logo">
                   <img src="../assets/mini-title.png" alt="UU電影" class="logo-mini">
                 </router-link>
               </el-col>
@@ -52,7 +52,7 @@
   </div>
 </template>
 <script>
-import "@/assets/index.css";
+import "@/assets/style.css";
 import title from "@/assets/title.png";
 export default {
   data() {
@@ -71,7 +71,6 @@ export default {
   },
   watch: {
     $route(to) {
-      // 对路由变化作出响应...
       console.log(to.path);
       this.activeIndex = to.path;
     }
