@@ -165,7 +165,7 @@ export default {
       });
     //todayHot
     const todayurlT =
-      "https://api.themoviedb.org/3/movie/top_rated?api_key=" +
+      "https://api.themoviedb.org/3/movie/popular?api_key=" +
       this.apiKey +
       "&language=zh-tw&page=1";
     this.$ajax

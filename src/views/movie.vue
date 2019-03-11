@@ -19,7 +19,12 @@
             </div>
             <img :src="'https://image.tmdb.org/t/p/w500/'+movie.poster_path" class="image">
             <div class="buyButtonBackground">
-              <el-button type="primary" class="buybutton" style="border-radius:0px">點擊購票</el-button>
+              <el-button
+                type="primary"
+                class="buybutton"
+                style="border-radius:0px"
+                @click="buyTickets(movie.id)"
+              >點擊購票</el-button>
             </div>
           </el-card>
         </el-col>
@@ -36,6 +41,12 @@ export default {
       src: "",
       hotMovie: new Array()
     };
+  },
+  methods: {
+    buyTickets(id) {
+      this.$store.commit("movie", id);
+      this.$router.push("/booking");
+    }
   },
   created: function() {
     var urlT =

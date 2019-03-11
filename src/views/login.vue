@@ -125,16 +125,6 @@ export default {
       windowSwitch: true,
       sta: false,
       title: title
-      /*cities:[{
-                value:101,
-                label:"一般用戶"
-            },{
-                value:102,
-                label:"老闆"
-            },{
-                value:103,
-                label:"外送員"
-            }]*/
     };
   },
   created: function() {
@@ -142,9 +132,9 @@ export default {
     document.onkeydown = function(e) {
       let key = window.event.keyCode;
       if (key == 13) {
-        if (app4.windowSwitch === true) {
+        if (this.windowSwitch === true) {
           _this.onLogin();
-        } else if (app4.windowSwitch === false) {
+        } else if (this.windowSwitch === false) {
           _this.onRegistered();
         }
       }
@@ -160,26 +150,26 @@ export default {
         .post("/chwz/login", self)
         .then(function(response) {
           if (response.data.status !== "loggedin") {
-            app4.$message({
+            this.$message({
               message: response.data.err,
               type: "error"
             });
-            app4.loginform.pwd = "";
-            app4.sta = false;
+            this.loginform.pwd = "";
+            this.sta = false;
           } else {
-            app4.$message({
+            this.$message({
               message: h("p", null, [
                 h("span", null, "歡迎回來!!! "),
                 h("i", { style: "color: teal" }, response.data.username)
               ]),
               type: "success"
             });
-            app4.sta = false;
+            this.sta = false;
           }
         })
         .catch(function(error) {
           console.log(error);
-          app4.$message({
+          this.$message({
             message: "請輸入正確的電子郵件",
             type: "error"
           });
@@ -190,29 +180,29 @@ export default {
       var self = JSON.stringify(this.regestered);
       console.log(self);
       if (this.regestered.email == "") {
-        app4.$message({
+        this.$message({
           message: "請輸入電子郵件",
           type: "error"
         });
       } else if (this.regestered.password != this.regestered.pwd2) {
-        app4.$message({
+        this.$message({
           message: "請進行密碼確認",
           type: "error"
         });
         this.regestered.password = "";
         this.regestered.pwd2 = "";
       } else if (this.regestered.password == "") {
-        app4.$message({
+        this.$message({
           message: "請輸入密碼",
           type: "error"
         });
       } else if (this.regestered.pwd2 == "") {
-        app4.$message({
+        this.$message({
           message: "請輸入第二次密碼",
           type: "error"
         });
       } else if (this.regestered.level == "") {
-        app4.$message({
+        this.$message({
           message: "請選擇用戶身份",
           type: "error"
         });

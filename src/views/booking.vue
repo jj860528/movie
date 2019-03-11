@@ -13,7 +13,7 @@
           </el-col>
           <el-col :span="6">
             <img src="../assets/selected.png">
-            <span class="seattext">不可選座</span>
+            <span class="seattext">不可選座位</span>
           </el-col>
         </el-row>
         <el-row type="flex">
@@ -34,13 +34,29 @@
             <el-col v-for="(col) in seatCol" :key="col">
               <div class="seat">
                 <div v-if="seatArray[row-1][col-1] == 0">
-                  <img src="../assets/unselected.png" alt @click="clickSeat(row-1,col-1)" class="seatimg">
+                  <img
+                    :plain="true"
+                    src="../assets/unselected.png"
+                    alt
+                    @click="clickSeat(row-1,col-1)"
+                    class="seatimg"
+                  >
                 </div>
                 <div v-else-if="seatArray[row-1][col-1] == 1">
-                  <img src="../assets/selected.png" alt @click="clickSeat(row-1,col-1)" class="seatimg">
+                  <img
+                    src="../assets/selected.png"
+                    alt
+                    @click="clickSeat(row-1,col-1)"
+                    class="seatimg"
+                  >
                 </div>
                 <div v-else-if="seatArray[row-1][col-1] == 2">
-                  <img src="../assets/bought.png" alt @click="clickSeat(row-1,col-1)" class="seatimg">
+                  <img
+                    src="../assets/bought.png"
+                    alt
+                    @click="clickSeat(row-1,col-1)"
+                    class="seatimg"
+                  >
                 </div>
                 <div v-else-if="seatArray[row-1][col-1] == 3"></div>
               </div>
@@ -71,7 +87,16 @@ export default {
       oldArray: [
         { row: 1, col: 1, status: 1 },
         { row: 3, col: 4, status: 1 },
-        { row: 2, col: 5, status: 3 }
+        { row: 0, col: 3, status: 3 },
+        { row: 1, col: 3, status: 3 },
+        { row: 2, col: 3, status: 3 },
+        { row: 3, col: 3, status: 3 },
+        { row: 4, col: 3, status: 3 },
+        { row: 5, col: 3, status: 3 },
+        { row: 6, col: 3, status: 3 },
+        { row: 7, col: 3, status: 3 },
+        { row: 8, col: 3, status: 3 },
+        { row: 9, col: 3, status: 3 }
       ],
       seatArray: [],
       seatRow: 10,
@@ -102,9 +127,27 @@ export default {
     };
   },
   created: function() {
+    //從store取出電影ID
+    let movieID = this.$store.state.movieID;
+    let TMDBmovie =
+      "https://api.themoviedb.org/3/movie/" +
+      movieID +
+      "?api_key=" +
+      this.apiKey +
+      "&language=zh";
+    console.log(TMDBmovie);
+    this.$ajax
+      .get(TMDBmovie)
+      .then(data => {
+        console.log(data.data);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+    console.log(movieID);
     //ajax 取出
     let seatRow = 10;
-    let seatCol =14;
+    let seatCol = 14;
     let oldArray = this.oldArray;
     //到這裡
     this.seatRow = seatRow;
@@ -129,9 +172,17 @@ export default {
       if (seatValue == 1) {
         return;
       } else if (seatValue == 0) {
-        newSeat[row][col] = 2;
         let currentSeat = { row: row, col: col };
-        this.currentSeat.push(currentSeat);
+        if (this.currentSeat.length < 5) {
+          newSeat[row][col] = 2;
+          this.currentSeat.push(currentSeat);
+        } else {
+          this.$message({
+            message: "最多只能選5個座位喔",
+            type: "error"
+          });
+          return;
+        }
       } else if (seatValue == 2) {
         newSeat[row][col] = 0;
         let Cancel = { row: row, col: col };
@@ -152,7 +203,7 @@ export default {
 <style scoped>
 .booking-select {
   background-color: rgb(38, 82, 184);
-  margin:25px 0 0 0
+  margin: 25px 0 0 0;
 }
 .seattext {
   display: inline-block;
