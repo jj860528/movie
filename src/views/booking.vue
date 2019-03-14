@@ -27,7 +27,7 @@
             v-for="(row) in seatRow"
             :key="row"
             type="flex"
-            :gutter="5"
+            :gutter="0"
             justify="center"
             ref="row.index"
           >
@@ -147,7 +147,7 @@ export default {
     console.log(movieID);
     //ajax 取出
     let seatRow = 10;
-    let seatCol = 14;
+    let seatCol = 10;
     let oldArray = this.oldArray;
     //到這裡
     this.seatRow = seatRow;
@@ -227,7 +227,7 @@ export default {
   height: 100%;
 }
 .seat {
-  width: 50px;
+  width: 22px;
   height: 50px;
   cursor: pointer;
 }
