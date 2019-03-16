@@ -7,7 +7,7 @@ export default new Vuex.Store({
   state: {
     indexPage: "/",
     movieID: "299537",
-    cinemaID: "",
+    cinemaID: "01",
     cinema: [
       {
         id: "01",

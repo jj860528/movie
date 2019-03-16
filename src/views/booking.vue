@@ -1,81 +1,105 @@
 <template>
-  <div>
-    <el-row>
-      <el-col :span="16">
-        <el-row type="flex" justify="center" style="margin:25px">
-          <el-col :span="6">
-            <img src="../assets/unselected.png">
-            <span class="seattext">可選座位</span>
-          </el-col>
-          <el-col :span="6">
-            <img src="../assets/bought.png">
-            <span class="seattext">以選座位</span>
-          </el-col>
-          <el-col :span="6">
-            <img src="../assets/selected.png">
-            <span class="seattext">不可選座位</span>
-          </el-col>
-        </el-row>
-        <el-row type="flex">
-          <el-col :span="24">
-            <div class="screen"></div>
-          </el-col>
-        </el-row>
-        <div class="cinema">
-          <!--用2個迴圈循環出影院-->
-          <el-row
-            v-for="(row) in seatRow"
-            :key="row"
-            type="flex"
-            :gutter="0"
-            justify="center"
-            ref="row.index"
-          >
-            <el-col v-for="(col) in seatCol" :key="col">
-              <div class="seat">
-                <div v-if="seatArray[row-1][col-1] == 0">
-                  <img
-                    :plain="true"
-                    src="../assets/unselected.png"
-                    alt
-                    @click="clickSeat(row-1,col-1)"
-                    class="seatimg"
-                  >
-                </div>
-                <div v-else-if="seatArray[row-1][col-1] == 1">
-                  <img
-                    src="../assets/selected.png"
-                    alt
-                    @click="clickSeat(row-1,col-1)"
-                    class="seatimg"
-                  >
-                </div>
-                <div v-else-if="seatArray[row-1][col-1] == 2">
-                  <img
-                    src="../assets/bought.png"
-                    alt
-                    @click="clickSeat(row-1,col-1)"
-                    class="seatimg"
-                  >
-                </div>
-                <div v-else-if="seatArray[row-1][col-1] == 3"></div>
+  <el-row class="booking-level">
+    <el-col :md="15" :xs="24" class="booking-level-children">
+      <el-row type="flex" justify="center">
+        <el-col :span="6">
+          <img src="../assets/unselected.png">
+          <span class="booking-seattext">可選座位</span>
+        </el-col>
+        <el-col :span="6">
+          <img src="../assets/bought.png">
+          <span class="booking-seattext">以選座位</span>
+        </el-col>
+        <el-col :span="6">
+          <img src="../assets/selected.png">
+          <span class="booking-seattext">不可選座位</span>
+        </el-col>
+      </el-row>
+      <el-row type="flex">
+        <el-col :span="24">
+          <div class="booking-screen"></div>
+        </el-col>
+      </el-row>
+      <div class="cinema">
+        <!--用2個迴圈循環出影院-->
+        <el-row
+          v-for="(row) in seatRow"
+          :key="row"
+          type="flex"
+          :gutter="0"
+          justify="center"
+          ref="row.index"
+        >
+          <font class = "booking-row">{{row}}</font>
+          <el-col v-for="(col) in seatCol" :key="col">
+            <div class="booking-seat">
+              <div v-if="seatArray[row-1][col-1] == 0">
+                <img
+                  :plain="true"
+                  src="../assets/unselected.png"
+                  alt
+                  @click="clickSeat(row-1,col-1)"
+                  class="booking-seatimg"
+                >
               </div>
-            </el-col>
-          </el-row>
-        </div>
-      </el-col>
-      <el-col :span="8" class="booking-select">
-        <el-select v-model="value" placeholder="请选择">
-          <el-option
-            v-for="item in options"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          ></el-option>
-        </el-select>
-      </el-col>
-    </el-row>
-  </div>
+              <div v-else-if="seatArray[row-1][col-1] == 1">
+                <img
+                  src="../assets/selected.png"
+                  alt
+                  @click="clickSeat(row-1,col-1)"
+                  class="booking-seatimg"
+                >
+              </div>
+              <div v-else-if="seatArray[row-1][col-1] == 2">
+                <img
+                  src="../assets/bought.png"
+                  alt
+                  @click="clickSeat(row-1,col-1)"
+                  class="booking-seatimg"
+                >
+              </div>
+              <div v-else-if="seatArray[row-1][col-1] == 3"></div>
+            </div>
+          </el-col>
+        </el-row>
+      </div>
+    </el-col>
+    <el-col :span="1"></el-col>
+    <el-col :md="8" :xs="0" class="booking-level-childeren2">
+      <div>
+        <el-row>
+          <el-col :span="12">
+            <img
+              :src="'https://image.tmdb.org/t/p/w500/'+movie.poster_path"
+              :alt="movie.alt"
+              class="booking-movieTicket-img"
+            >
+          </el-col>
+          <el-col :span="12">
+            <p>{{movie.title}}</p>
+            <p>{{movie.tagline}}</p>
+            <i class="el-icon-star-on">{{movie.vote_average}}</i>
+            <p>影院：{{cinema.cinema}}</p>
+            <p>影廳：1號廳</p>
+          </el-col>
+          <el-col :span="24">
+            <p class="booking-overview">{{movie.overview}}</p>
+          </el-col>
+          <el-col :span="24" class = "booking-seat-area" >
+            <p>座位：一次最多選取五個</p>
+            <p
+              v-for="(currentSeat, index) in currentSeat"
+              :key="index"
+              class = "booking-movieTicket"
+            >{{currentSeat.row+1}}列,{{currentSeat.col+1}}座</p>
+          </el-col>
+          <el-col :span="24" style = "border-top: 2px dashed #eee;">
+            <p style = "text-align:right"><el-button type="primary" round>付款</el-button></p>
+          </el-col>
+        </el-row>
+      </div>
+    </el-col>
+  </el-row>
 </template>
 <script>
 export default {
@@ -100,30 +124,10 @@ export default {
       ],
       seatArray: [],
       seatRow: 10,
-      seatCol: 20,
+      seatCol: 15,
       value: "",
-      options: [
-        {
-          value: "选项1",
-          label: "黄金糕"
-        },
-        {
-          value: "选项2",
-          label: "双皮奶"
-        },
-        {
-          value: "选项3",
-          label: "蚵仔煎"
-        },
-        {
-          value: "选项4",
-          label: "龙须面"
-        },
-        {
-          value: "选项5",
-          label: "北京烤鸭"
-        }
-      ]
+      movie: "",
+      cinema: ""
     };
   },
   created: function() {
@@ -135,19 +139,24 @@ export default {
       "?api_key=" +
       this.apiKey +
       "&language=zh";
-    console.log(TMDBmovie);
     this.$ajax
       .get(TMDBmovie)
       .then(data => {
-        console.log(data.data);
+        const movie = data.data;
+        console.log(movie);
+        this.movie = movie;
       })
       .catch(err => {
         console.log(err);
       });
-    console.log(movieID);
+    //store取出影院
+    let cinemaID = this.$store.state.cinemaID;
+    let cinema = this.$store.state.cinema;
+    this.cinema = cinema[parseInt(cinemaID - 1)];
+    console.log(this.cinema);
     //ajax 取出
     let seatRow = 10;
-    let seatCol = 10;
+    let seatCol = 15;
     let oldArray = this.oldArray;
     //到這裡
     this.seatRow = seatRow;
@@ -201,34 +210,8 @@ export default {
 };
 </script>
 <style scoped>
-.booking-select {
-  background-color: rgb(38, 82, 184);
-  margin: 25px 0 0 0;
-}
-.seattext {
-  display: inline-block;
-  height: 100%;
-  line-height: 35px;
-  font-size: 14px;
-  position: relative;
-  left: 5px;
-  bottom: 15px;
-}
-.screen {
-  width: 80%;
-  height: 200px;
-  margin: 20px auto 50px;
-  background-color: #f6f6f6;
-  color: #636363;
-  border: 1px solid #b1b1b1;
-}
 .cinema {
   width: 100%;
   height: 100%;
-}
-.seat {
-  width: 22px;
-  height: 50px;
-  cursor: pointer;
 }
 </style>
