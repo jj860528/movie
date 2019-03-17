@@ -4,6 +4,11 @@ a {
 .router-link-active {
 	text-decoration: none;
 }
+.el-container{
+	margin: 0; 
+	padding: 0;
+  	border: 0;
+}
 .logo {
 	display: inline-block;
 	width: 146px;
@@ -36,21 +41,10 @@ a {
 	box-shadow: -3px -3px 9px rgb(0, 0, 0);
 }
 .footer {
-	background-color: #f7fbfd;
-	width: 100%;
-	height: 50px;
-	/* footer的高度一定要是固定值*/
-	position: block;
-	bottom: 0px;
-	left: 0px;
+	padding: 10px auto;
 	background-color: #f7fbfd;
 	text-align : center;
-}
-.footer-txt {
-	display : inline-block;
-}
-.footer-mix {
-	font-size: 12px;
+	box-sizing: border-box;
 }
 @media screen and (min-width: 0px) and (max-width: 600px) {
 	.logo {
@@ -98,7 +92,7 @@ a {
 	font-size: 26px;
 	text-align: left;
 	color: #ef4238;
-	margin: 25px 0px 30px 25px;
+	margin: 0px 0px 20px 0px;
 }
 .today-text {
 	line-height: 40px;
@@ -334,12 +328,21 @@ html {
 	height: 100%;
 }
 .booking-screen {
-	width: 80%;
+	position: relative;
+	width: 100%;
 	height: 200px;
 	margin: 20px auto 50px ;
 	background-color: #f6f6f6;
 	color: #636363;
 	border: 1px solid #b1b1b1;
+}
+.booking-screen::before{
+	content: "銀幕位置";
+	position: absolute;
+	bottom: 50%;
+	left: 0;
+	right: 0;
+	text-align: center;
 }
 .booking-seattext {
 	display: inline-block;
@@ -351,10 +354,15 @@ html {
 	bottom: 15px;
 }
 .booking-level-childeren2{
+	border-right:none; 
 	box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
 	padding: 10px;
 }
+.p-ch > p{
+	margin: 10px 0 ;
+}
 .booking-movieTicket{
+	margin: 20px 0;
 	background: rgba(214, 214, 236, 0.5);
 }
 .booking-movieTicket-img{
@@ -367,7 +375,7 @@ html {
 .booking-seat-area{
 	border-top: 2px dashed #eee; 
 	width:100%;
-	height:250px; 
+	height:200px; 
 }
 .booking-overview{
 	width: 100%;
@@ -378,7 +386,8 @@ html {
 	font-size: 18px;
 	line-height: 30px;
 	word-wrap:break-word;
-	white-space: pre-line
+	white-space: pre-line;
+	margin: 15px 0 ;
 }
 .booking-row{
 	position: block;

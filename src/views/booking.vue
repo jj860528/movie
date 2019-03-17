@@ -75,7 +75,7 @@
               class="booking-movieTicket-img"
             >
           </el-col>
-          <el-col :span="12">
+          <el-col :span="12" class = "p-ch">
             <p>{{movie.title}}</p>
             <p>{{movie.tagline}}</p>
             <i class="el-icon-star-on">{{movie.vote_average}}</i>
@@ -85,7 +85,7 @@
           <el-col :span="24">
             <p class="booking-overview">{{movie.overview}}</p>
           </el-col>
-          <el-col :span="24" class = "booking-seat-area" >
+          <el-col :span="24" class = "booking-seat-area p-ch" >
             <p>座位：一次最多選取五個</p>
             <p
               v-for="(currentSeat, index) in currentSeat"
@@ -94,7 +94,7 @@
             >{{currentSeat.row+1}}列,{{currentSeat.col+1}}座</p>
           </el-col>
           <el-col :span="24" style = "border-top: 2px dashed #eee;">
-            <p style = "text-align:right"><el-button type="primary" round>付款</el-button></p>
+            <p style = "text-align:right; margin-top:20px;"><el-button type="primary" round>訂票</el-button></p>
           </el-col>
         </el-row>
       </div>
