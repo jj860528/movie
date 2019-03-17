@@ -51,9 +51,9 @@
       </el-col>
       <el-col :xl="6" :xs="0" :offset="1">
         <p class="today">今日票房</p>
-        <ol>
+        <ul style = "list-style: none; counter-reset: li;" >
           <li v-for="(todayHots ,o) in  todayHot" :key="o" class="today-text">{{todayHots.title}}</li>
-        </ol>
+        </ul>
       </el-col>
       <el-col :xl="16" :md="16" :xs="24">
         <el-row type="flex" justify="space-around" style="align-items: baseline; ">
@@ -64,7 +64,6 @@
           </el-col>
           <el-col :span="6">
             <div class="allMovie">
-              <p style="color:#409EFF">全部》</p>
             </div>
           </el-col>
         </el-row>
@@ -93,13 +92,13 @@
       </el-col>
       <el-col :xl="6" :xs="0" :offset="1">
         <p class="today" style="color:#ffb400!important">最受期待</p>
-        <ol>
+        <ul style = "list-style: none; counter-reset: li;">
           <li
             v-for="(futureMovies ,o) in  futureMovie"
             :key="o"
             class="today-text"
           >{{futureMovies.title}}</li>
-        </ol>
+        </ul>
       </el-col>
     </el-row>
   </div>

@@ -101,10 +101,34 @@ a {
 	margin: 25px 0px 30px 25px;
 }
 .today-text {
-	line-height: 35px;
+	line-height: 40px;
 	font-size: 18px;
 	color: #333;
+	counter-increment: li
+
 }
+.today-text::before{
+	content: counter(li);
+	color:#909399;
+	display: inline-block; 
+	width: 1em;
+	margin-left: -1.5em;
+    margin-right: 1em; text-align: right; direction: rtl
+}
+.today-text:nth-child(1)::before,
+.today-text:nth-child(2)::before,
+.today-text:nth-child(3)::before
+{
+	content: counter(li);
+	color:red;
+	display: inline-block; 
+	font-style:oblique;
+	font-size: 20px;
+	width: 1em;
+	margin-left: -1.5em;
+    margin-right: 1em; text-align: right; direction: rtl
+}
+
 .movie {
 	position: relative;
 	overflow: hidden;
@@ -360,7 +384,9 @@ html {
 	position: block;
 	width: 10px;
 	height: 10px;
-	margin: 15px 40px ;
+	margin: 15px;
+	margin-right: 1em; text-align: right; direction: rtl;
+	color:#909399;
 }
 @media screen and (min-width: 0px) and (max-width: 600px) {
 	.booking-level-childeren2{
