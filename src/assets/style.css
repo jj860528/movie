@@ -48,23 +48,24 @@ a {
 }
 @media screen and (min-width: 0px) and (max-width: 600px) {
 	.logo {
-	display: none;
+		display: none;
+	}
+	.logo-mini {
+		height: 40px;
+		width: 60px;
+		margin: 0px 0px -10px 0px;
+		display: inline-block;
+		background: #fff url(./mini-title.png) center center fixed no-repeat;
+	}
+	.footer {
+		width: 100%;
+		height: 100%;
+	}
+	.footer-txt {
+		display : none;
 }
-.logo-mini {
-	height: 40px;
-	width: 60px;
-	margin: 0px 0px -10px 0px;
-	display: inline-block;
-	background: #fff url(./mini-title.png) center center fixed no-repeat;
 }
-.footer {
-	width: 100%;
-	height: 100%;
-}
-.footer-txt {
-	display : none;
-}
-} .hotMovie-title {
+.hotMovie-title {
 	font-size: 26px;
 	text-align: left;
 	color: #ef4238;
@@ -251,26 +252,6 @@ html {
 	position: relative;
 	bottom: 15px;
 }
-@media screen and (max-width: 601px)and (max-width: 1050px) {
-	#windo {
-	margin: -300px auto;
-	width: 290px;
-	height: 400px;
-	background-color: none;
-	border-radius: none
-}
-} @media screen and (min-width: 0px) and (max-width: 600px) {
-	#login {
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	top: 0;
-	left: 0;
-	overflow-y: auto;
-	background: #000 url(backimg-mini.jpg) center center fixed no-repeat;
-	-moz-background-size: cover;
-	background-size: cover;
-}
 #windo {
 	margin: -130px auto;
 	width: 290px;
@@ -295,7 +276,7 @@ html {
 	position: relative;
 	bottom: 33px;
 }
-} .el-zoom-in-center-leave-active {
+.el-zoom-in-center-leave-active {
 	transition: opacity 0s
 }
 .el-zoom-in-center-enter-active {
@@ -397,6 +378,25 @@ html {
 	margin-right: 1em; text-align: right; direction: rtl;
 	color:#909399;
 }
+.select-bg{
+	width: 100%;
+	height:300px;
+	background: rgb(255, 255, 255) url(selectbg.png) ;
+	background-repeat:no-repeat;
+	background-size: cover	;
+	border-radius: 1%;
+}
+.select-movieTicket-img{
+	width: 224px;
+	height: 280px;
+	margin: 30px;
+	border-radius: 5%;
+	box-shadow: 0 5px 2px rgba(0, 0, 0, 0.5);
+}
+.select-title{
+	font-size: 28px;
+
+}
 @media screen and (min-width: 0px) and (max-width: 600px) {
 	.booking-level-childeren2{
 		border: #000 solid 1px;
@@ -415,4 +415,25 @@ html {
 		border: 1px solid #b1b1b1;
 	}
 }
-  
+@media screen and (max-width: 601px)and (max-width: 1050px) {
+	#windo {
+	margin: -300px auto;
+	width: 290px;
+	height: 400px;
+	background-color: none;
+	border-radius: none
+}
+}
+@media screen and (min-width: 0px) and (max-width: 600px) {
+	#login {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		overflow-y: auto;
+		background: #000 url(backimg-mini.jpg) center center fixed no-repeat;
+		-moz-background-size: cover;
+		background-size: cover;
+	}
+}

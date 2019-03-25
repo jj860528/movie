@@ -39,7 +39,9 @@
     <el-main style=" margin:60px 0px 0px 0px;">
       <el-row type="flex" justify="center" :gutter="24">
         <el-col :xl="16" :md="16" :xs="24">
-          <router-view/>
+          <transition name="fade">
+            <router-view/>
+          </transition>
         </el-col>
       </el-row>
     </el-main>
@@ -75,3 +77,12 @@ export default {
   }
 };
 </script>
+<style scoped>
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
+</style>

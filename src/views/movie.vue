@@ -45,7 +45,7 @@ export default {
   methods: {
     buyTickets(id) {
       this.$store.commit("movie", id);
-      this.$router.push("/booking");
+      this.$router.push("/select");
     }
   },
   created: function() {
