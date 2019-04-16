@@ -9,18 +9,26 @@
             class="select-movieTicket-img"
           >
         </el-col>
-        <el-col :span="12" style="color:#fff; margin-top:30px">
+        <el-col :span="17" style="color:#fff; margin-top:30px">
           <el-row>
-            <el-col :span="24">
+            <el-col :span="24" style="margin: 10px;">
               <p class="select-title">{{movie.title}}</p>
             </el-col>
-            <el-col :span="24">
-              評分：
-              <span>{{movie.vote_average}}</span>
+            <el-col :span="24" style="margin: 5px;">
+              <el-row>
+                <el-col :span="1.5">評分：</el-col>
+                <el-col :span="4">
+                  <div v-if="movie.vote_average>0">
+                    <span>{{movie.vote_average}}</span>
+                  </div>
+                  <div v-else>
+                    <span>尚無評分</span>
+                  </div>
+                </el-col>
+              </el-row>
             </el-col>
-            <el-col :span="2" v-for="(genres, o) in movie.genres" :key="o">{{genres.name}}</el-col>
-            <el-col :span="24">
-              <p class="booking-overview">{{movie.overview}}</p>
+            <el-col :span="24" class ="select-overview">
+              <p class = "select-overview">{{movie.overview}}</p>
             </el-col>
           </el-row>
         </el-col>

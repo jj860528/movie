@@ -40,8 +40,11 @@
                   </el-col>
                   <el-col :span="12">
                     <el-row>
-                      <el-col :span="9">
+                      <el-col :span="10">
                         <a href="#" class="windo2Text" @click="Switch">進行註冊</a>
+                      </el-col>
+                      <el-col :span="3">
+                        <p>or</p>
                       </el-col>
                       <el-col :span="10">
                         <router-link to="/" style="text-align:left;">回首頁</router-link>
@@ -90,7 +93,7 @@
                 </el-form-item>
               </el-form>
               <el-row type="flex" class="regsteredwindow2" justify="center">
-                <div class="miniwindo2">
+                <div class="regsteredarea">
                   <el-col :span="12">
                     <div style="text-align:right;">已經有帳號嗎?</div>
                   </el-col>
