@@ -6,6 +6,7 @@ import movie from "@/views/movie.vue";
 import home from "@/views/home.vue";
 import cinema from "@/views/cinema.vue";
 import booking from "@/views/booking.vue";
+import select from "@/views/select.vue";
 
 Vue.use(Router);
 
@@ -37,6 +38,11 @@ export default new Router({
           path: "/booking",
           name: "booking",
           component: booking
+        },
+        {
+          path: "/select",
+          name: "select",
+          component: select
         }
       ]
     },

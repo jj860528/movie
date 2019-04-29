@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
   state: {
     indexPage: "/",
-    movieID: "",
+    movieID: "399361",
     cinemaID: "01",
     cinema: [
       {
@@ -107,6 +107,9 @@ export default new Vuex.Store({
     },
     movie(state, id) {
       this.state.movieID = id;
+    },
+    cinema(state, id) {
+      this.state.cinemaID = id;
     }
   },
   actions: {}
