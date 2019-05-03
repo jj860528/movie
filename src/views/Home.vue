@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="show">
     <el-row :gutter="24">
       <el-col :xl="16" :md="16" :xs="24">
         <el-row type="flex" justify="space-around" style="align-items: baseline; ">
@@ -21,13 +21,13 @@
             :xl="5"
             :md="5"
             :xs="9"
-            v-for="(movie , o) in hotMovie"
-            :key="o"
+            v-for="(movie ,index) in hotMovie"
+            :key="index"
             class="movie"
             v-loading.fullscreen.lock="loading"
           >
             <el-card :body-style="{ padding: '0px' }" :id="movie.id" shadow="hover">
-              <img :src="'https://image.tmdb.org/t/p/w500/'+movie.poster_path" class="image">
+              <img :src="'https://images.weserv.nl/?url='+movie.images.small" class="image">
               <div style="padding: 14px;">
                 <el-tooltip effect="dark" :content="movie.title" placement="top">
                   <div class="movieTitleWindow">
@@ -41,7 +41,8 @@
                 <!--<el-button class = "movie-detailed" type="warning" size="mini" plain round>電影詳情 <i class = "el-icon-star-on"></i></el-button>-->
               </div>
               <div>
-                <el-button class="movie-go" type="primary" size="mini" plain round>前往訂票
+                <el-button class="movie-go" type="primary" size="mini" plain round>
+                  前往訂票
                   <i class="el-icon-d-arrow-right"></i>
                 </el-button>
               </div>
@@ -50,9 +51,9 @@
         </el-row>
       </el-col>
       <el-col :xl="6" :xs="0" :offset="1">
-        <p class="today">今日票房</p>
-        <ul style = "list-style: none; counter-reset: li;" >
-          <li v-for="(todayHots ,o) in  todayHot" :key="o" class="today-text">{{todayHots.title}}</li>
+        <p class="today" @click="movie">今日票房</p>
+        <ul style="list-style: none; counter-reset: li;">
+          <li v-for="(todayHots ,o) in  hotMovie" :key="o" class="today-text">{{todayHots.title}}</li>
         </ul>
       </el-col>
       <el-col :xl="16" :md="16" :xs="24">
@@ -63,8 +64,7 @@
             </div>
           </el-col>
           <el-col :span="6">
-            <div class="allMovie">
-            </div>
+            <div class="allMovie"></div>
           </el-col>
         </el-row>
         <el-row>
@@ -78,7 +78,7 @@
             v-loading.fullscreen.lock="loading"
           >
             <el-card :body-style="{ padding: '0px' }" :id="movie.id" shadow="hover">
-              <img :src="'https://image.tmdb.org/t/p/w500/'+movie.poster_path" class="image">
+              <img :src="'https://images.weserv.nl/?url='+movie.images.small" class="image">
               <div style="padding: 14px;">
                 <el-tooltip effect="dark" :content="movie.title" placement="top">
                   <div class="movieTitleWindow">
@@ -92,7 +92,7 @@
       </el-col>
       <el-col :xl="6" :xs="0" :offset="1">
         <p class="today" style="color:#ffb400!important">最受期待</p>
-        <ul style = "list-style: none; counter-reset: li;">
+        <ul style="list-style: none; counter-reset: li;">
           <li
             v-for="(futureMovies ,o) in  futureMovie"
             :key="o"
@@ -109,14 +109,14 @@ import "../assets/style.css";
 export default {
   data() {
     return {
-      loading: true,
+      loading: false,
       content: "",
       src: "",
       id: "",
-      hotMovie: new Array(),
+      hotMovie: {},
       futureMovie: new Array(),
-      todayHot: new Array(),
-      activeIndex: "/movie"
+      activeIndex: "/movie",
+      show: true
     };
   },
   methods: {
@@ -125,29 +125,14 @@ export default {
     },
     allMovie() {
       this.$store.commit("indexPage", "/movie");
-
-      console.log(this.$store.state.indexPage);
     }
   },
   created: function() {
-    //獲取熱門電影
-    var hoturlT =
-      "https://api.themoviedb.org/3/movie/popular?api_key=" +
-      this.apiKey +
-      "&language=zh-tw&page=1";
-    this.$ajax
-      .post(hoturlT)
-      .then(data => {
-        var arr = data.data.results;
-        arr.length = 8;
-        this.hotMovie = arr;
-        this.loading = false;
-      })
-      .catch(function(err) {
-        console.log(err);
-      });
+    this.hotMovie = this.$store.state.playingList;
+    this.futureMovie = this.$store.state.comingList;
+
     //即將上映
-    var urlT =
+    /*var urlT =
       "https://api.themoviedb.org/3/movie/upcoming?api_key=" +
       this.apiKey +
       "&language=zh-tw&page=1";
@@ -161,9 +146,9 @@ export default {
       })
       .catch(function(err) {
         console.log(err);
-      });
+      });*/
     //todayHot
-    const todayurlT =
+    /*const todayurlT =
       "https://api.themoviedb.org/3/movie/popular?api_key=" +
       this.apiKey +
       "&language=zh-tw&page=1";
@@ -177,7 +162,21 @@ export default {
       })
       .catch(function(err) {
         console.log(err);
-      });
+      });*/
+  },
+  watch: {
+    futureMovie: function() {
+      if (this.futureMovie.length > 8) {
+        this.futureMovie.splice(8);
+      }
+    },
+    hotMovie: function() {
+      if (this.hotMovie.length > 8) {
+        let obj =JSON.parse(JSON.stringify(this.hotMovie));
+        obj.splice(8);
+        this.hotMovie = obj
+      }
+    }
   }
 };
 </script>

@@ -4,26 +4,33 @@
       <el-row>
         <el-col :span="6">
           <img
-            :src="'https://image.tmdb.org/t/p/w500/'+movie.poster_path"
-            :alt="movie.alt"
+            :src="'https://images.weserv.nl/?url='+movie[0].images.small"
+            :alt="movie[0].title"
             class="select-movieTicket-img"
           >
         </el-col>
-        <el-col :span="12" style="color:#fff; margin-top:30px">
+        <el-col :span="7" style="color:#fff; margin-top:30px">
           <el-row>
             <el-col :span="24">
-              <p class="select-title">{{movie.title}}</p>
+              <p class="select-title">{{movie[0].title}}</p>
             </el-col>
-            <el-col :span="24">
+            <el-col :span="24" style = "margin-top: 25px ;">
               評分：
-              <span>{{movie.vote_average}}</span>
+              <span>{{movie[0].rating.average}}</span>
             </el-col>
-            <el-col :span="2" v-for="(genres, o) in movie.genres" :key="o">{{genres.name}}</el-col>
-            <el-col :span="24">
-              <p class="booking-overview">{{movie.overview}}</p>
-            </el-col>
+            <el-col :span="3" v-for="(genres, o) in movie[0].genres" :key="o" style = "margin-top: 25px ;">{{genres}}</el-col>
           </el-row>
         </el-col>
+          <el-col :span="8" style="color:#fff; margin-top:30px">
+          <el-row :gutter="50">
+            <el-col :span="24"><h1>主演</h1></el-col>
+            <el-col :span="8" v-for="(person,o) in movie[0].casts" :key = "o" class = "select-person-img-father">
+              <el-tooltip class="item" effect="dark" :content="person.name" placement="top-end">
+                <img :src="'https://images.weserv.nl/?url='+person.avatars.small"  class = "select-person-img">
+              </el-tooltip>
+            </el-col>
+          </el-row>
+          </el-col>
       </el-row>
     </el-col>
     <el-col :span="24" style=" margin-top:50px">
@@ -53,7 +60,9 @@ export default {
       cinema: [],
       movie: [],
       src: "",
-      alt: ""
+      alt: "",
+      Arr:null,
+      content:""
     };
   },
   methods: {
@@ -71,7 +80,16 @@ export default {
   },
   created: function() {
     let movieID = this.$store.state.movieID;
-    let TMDBmovie =
+    let allMovie = this.$store.state.playingList;
+    let Arr = []
+    this.movie = Arr
+    for(let i in allMovie){
+      if(allMovie[i].id === movieID){
+        Arr.push(allMovie[i])
+        console.log(Arr)
+      }
+    }
+    /*let TMDBmovie =
       "https://api.themoviedb.org/3/movie/" +
       movieID +
       "?api_key=" +
@@ -86,8 +104,8 @@ export default {
       })
       .catch(err => {
         console.log(err);
-      });
+      });*/
     this.cinema = this.$store.state.cinema;
-  }
+  },
 };
 </script>

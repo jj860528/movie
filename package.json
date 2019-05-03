@@ -9,10 +9,13 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "cors": "^2.8.5",
     "element-ui": "^2.4.5",
+    "firebase": "^5.10.1",
     "vue": "^2.5.21",
     "vue-axios": "^2.1.4",
     "vue-router": "^3.0.1",
+    "vuefire": "^1.4.5",
     "vuex": "^3.0.1"
   },
   "devDependencies": {

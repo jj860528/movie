@@ -17,7 +17,7 @@
                 <span class="movie-txt">{{movie.title}}</span>
               </el-tooltip>
             </div>
-            <img :src="'https://image.tmdb.org/t/p/w500/'+movie.poster_path" class="image">
+            <img :src="'https://images.weserv.nl/?url='+movie.images.small" class="image">
             <div class="buyButtonBackground">
               <el-button
                 type="primary"
@@ -49,6 +49,9 @@ export default {
     }
   },
   created: function() {
+    /*console.log(this.$store.state.comingList)
+    console.log(this.$store.state.playingList)
+    console.log(this.$store.state.weeklyList)
     var urlT =
       "https://api.themoviedb.org/3/movie/popular?api_key=" +
       this.apiKey +
@@ -62,7 +65,8 @@ export default {
       })
       .catch(function(err) {
         console.log(err);
-      });
+      });*/
+    this.hotMovie = this.$store.state.allMovie
   }
 };
 </script>

@@ -395,7 +395,17 @@ html {
 }
 .select-title{
 	font-size: 28px;
-
+}
+.select-person-img{
+	width: 130px;
+	height:180px;
+	margin: 25px auto ;
+	background-size: cover;
+}
+.select-person-img-father{
+	display:flex;
+	width:100%;
+	height:100%;
 }
 @media screen and (min-width: 0px) and (max-width: 600px) {
 	.booking-level-childeren2{

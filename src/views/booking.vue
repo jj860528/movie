@@ -70,20 +70,15 @@
         <el-row>
           <el-col :span="12">
             <img
-              :src="'https://image.tmdb.org/t/p/w500/'+movie.poster_path"
-              :alt="movie.alt"
+              :src="'https://images.weserv.nl/?url='+movie[0].images.small"
               class="booking-movieTicket-img"
             >
           </el-col>
           <el-col :span="12" class="p-ch">
-            <p>{{movie.title}}</p>
-            <p>{{movie.tagline}}</p>
-            <i class="el-icon-star-on">{{movie.vote_average}}</i>
+            <p>{{movie[0].title}}</p>
+            <i class="el-icon-star-on">{{movie[0].rating.average}}</i>
             <p>影院：{{cinema.cinema}}</p>
             <p>影廳：1號廳</p>
-          </el-col>
-          <el-col :span="24">
-            <p class="booking-overview">{{movie.overview}}</p>
           </el-col>
           <el-col :span="24" class="booking-seat-area p-ch">
             <p>座位：一次最多選取五個</p>
@@ -135,22 +130,15 @@ export default {
   created: function() {
     //從store取出電影ID
     let movieID = this.$store.state.movieID;
-    let TMDBmovie =
-      "https://api.themoviedb.org/3/movie/" +
-      movieID +
-      "?api_key=" +
-      this.apiKey +
-      "&language=zh";
-    this.$ajax
-      .get(TMDBmovie)
-      .then(data => {
-        const movie = data.data;
-        console.log(movie);
-        this.movie = movie;
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    let allMovie = this.$store.state.playingList;
+    let Arr = []
+    this.movie = Arr
+    for(let i in allMovie){
+      if(allMovie[i].id === movieID){
+        Arr.push(allMovie[i])
+        console.log(Arr)
+      }
+    }
     //store取出影院
     let cinemaID = this.$store.state.cinemaID;
     let cinema = this.$store.state.cinema;

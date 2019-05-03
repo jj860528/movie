@@ -58,7 +58,8 @@ export default {
   data() {
     return {
       activeIndex: "/",
-      title: title
+      title: title,
+      cinema: new Array(),
     };
   },
   methods: {
@@ -71,7 +72,6 @@ export default {
   },
   watch: {
     $route(to) {
-      console.log(to.path);
       this.activeIndex = to.path;
     }
   }

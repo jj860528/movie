@@ -7,6 +7,7 @@ import VueAxios from "vue-axios";
 import "./icon/style.css";
 import App from "./App.vue";
 
+
 Vue.prototype.$ajax = axios;
 
 Vue.use(VueAxios, axios);
