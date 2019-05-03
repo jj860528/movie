@@ -25,6 +25,7 @@ export default new Vuex.Store({
     },
     cinema(state, id) {
       this.state.cinemaID = id;
+<<<<<<< HEAD
     },
     fireCinema(state, cinema) {
       this.state.cinema = cinema;
@@ -37,6 +38,8 @@ export default new Vuex.Store({
     },
     fireWeeking(state, week) {
       this.state.weeklyList = week
+=======
+>>>>>>> f57a5daac1a5d77524826fac9a84e2ee30d19940
     }
   },
   getters: {

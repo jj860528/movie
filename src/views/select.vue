@@ -60,9 +60,13 @@ export default {
       cinema: [],
       movie: [],
       src: "",
+<<<<<<< HEAD
       alt: "",
       Arr:null,
       content:""
+=======
+      alt: ""
+>>>>>>> f57a5daac1a5d77524826fac9a84e2ee30d19940
     };
   },
   methods: {
@@ -80,6 +84,7 @@ export default {
   },
   created: function() {
     let movieID = this.$store.state.movieID;
+<<<<<<< HEAD
     let allMovie = this.$store.state.playingList;
     let Arr = []
     this.movie = Arr
@@ -90,6 +95,9 @@ export default {
       }
     }
     /*let TMDBmovie =
+=======
+    let TMDBmovie =
+>>>>>>> f57a5daac1a5d77524826fac9a84e2ee30d19940
       "https://api.themoviedb.org/3/movie/" +
       movieID +
       "?api_key=" +
@@ -104,8 +112,14 @@ export default {
       })
       .catch(err => {
         console.log(err);
+<<<<<<< HEAD
       });*/
     this.cinema = this.$store.state.cinema;
   },
+=======
+      });
+    this.cinema = this.$store.state.cinema;
+  }
+>>>>>>> f57a5daac1a5d77524826fac9a84e2ee30d19940
 };
 </script>
