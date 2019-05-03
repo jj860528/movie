@@ -75,23 +75,11 @@
             >
           </el-col>
           <el-col :span="12" class="p-ch">
-<<<<<<< HEAD
             <p>{{movie[0].title}}</p>
             <i class="el-icon-star-on">{{movie[0].rating.average}}</i>
             <p>影院：{{cinema.cinema}}</p>
             <p>影廳：1號廳</p>
           </el-col>
-=======
-            <p>{{movie.title}}</p>
-            <p>{{movie.tagline}}</p>
-            <i class="el-icon-star-on">{{movie.vote_average}}</i>
-            <p>影院：{{cinema.cinema}}</p>
-            <p>影廳：1號廳</p>
-          </el-col>
-          <el-col :span="24">
-            <p class="booking-overview">{{movie.overview}}</p>
-          </el-col>
->>>>>>> f57a5daac1a5d77524826fac9a84e2ee30d19940
           <el-col :span="24" class="booking-seat-area p-ch">
             <p>座位：一次最多選取五個</p>
             <p
