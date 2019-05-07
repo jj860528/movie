@@ -18,19 +18,12 @@
                 @select="handmenu"
                 router
                 style="
-										border-style:none;
-										margin: 0px 0px 0px 0px;
-									"
+				border-style:none;
+				margin: 0px 0px 0px 0px;"
               >
-                <el-menu-item index="/">首頁</el-menu-item>
-                <el-menu-item index="/movie">電影</el-menu-item>
-                <el-menu-item index="/cinema">影院</el-menu-item>
+                <el-menu-item index="/chseat">新增影廳</el-menu-item>
+                <el-menu-item index="/managem">管理影廳</el-menu-item>
               </el-menu>
-            </el-col>
-            <el-col :xl="4" :md="3" :xs="2">
-              <router-link to="/login">
-                <i class="iconfont user">&#xe6a3;</i>
-              </router-link>
             </el-col>
           </el-row>
         </el-col>
@@ -45,10 +38,6 @@
         </el-col>
       </el-row>
     </el-main>
-    <el-footer class="footer">
-      <p class="footer-txt">轉載內容版權歸作者及來源網站所有，本站原創內容轉載請註明來源，商業媒體及紙媒請先聯繫：UUmovie@gmail.com</p>
-      <p class="footer-mix">本網站內容享有著作權，禁止侵害，違者必究。 © 2019 UUmovie All Rights Reserved.</p>
-    </el-footer>
   </el-container>
 </template>
 <script>
@@ -58,20 +47,23 @@ export default {
   data() {
     return {
       activeIndex: "/",
-      title: title,
-      cinema: new Array(),
-      fireMovie: []
+      fireMovie: [],
+      title: title
     };
+  },
+  created: function() {
+    this.fireMovie = this.$store.state.fireMovie;
   },
   methods: {
     handmenu(key, keyPath) {
       console.log(key, keyPath);
+      console.log(this.fireMovie);
     }
   },
   created: function() {
     this.activeIndex = this.$route.path;
-    this.fireMovie = this.$store.state.fireMovie
   },
+
   watch: {
     $route(to) {
       this.activeIndex = to.path;
@@ -79,12 +71,3 @@ export default {
   }
 };
 </script>
-<style scoped>
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.5s;
-}
-.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
-  opacity: 0;
-}
-</style>

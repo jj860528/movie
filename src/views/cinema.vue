@@ -35,6 +35,8 @@ export default {
     },
     handleClick(row) {
       console.log(row.id);
+      this.$store.commit("cinema", row.id);
+      this.$router.push("/movie");
     }
   },
   created: function() {

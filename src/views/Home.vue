@@ -5,7 +5,7 @@
         <el-row type="flex" justify="space-around" style="align-items: baseline; ">
           <el-col :span="12">
             <div class="hotMovie-title">
-              <p>熱門電影</p>
+              <p @click="movie">熱門電影</p>
             </div>
           </el-col>
           <el-col :span="6">
@@ -41,7 +41,14 @@
                 <!--<el-button class = "movie-detailed" type="warning" size="mini" plain round>電影詳情 <i class = "el-icon-star-on"></i></el-button>-->
               </div>
               <div>
-                <el-button class="movie-go" type="primary" size="mini" plain round>
+                <el-button
+                  class="movie-go"
+                  type="primary"
+                  size="mini"
+                  @click="buyTickets(movie.id)"
+                  plain
+                  round
+                >
                   前往訂票
                   <i class="el-icon-d-arrow-right"></i>
                 </el-button>
@@ -116,21 +123,32 @@ export default {
       hotMovie: {},
       futureMovie: new Array(),
       activeIndex: "/movie",
-      show: true
+      TodayTime: "1",
+      show: true,
+      fireMovie: [],
+      exhibitions: []
     };
   },
   methods: {
     movie() {
       //data from TMDB
+      console.log(this.exhibitions);
+      console.log(this.futureMovie);
+      console.log(123);
     },
     allMovie() {
       this.$store.commit("indexPage", "/movie");
+    },
+    buyTickets(id) {
+      this.$store.commit("movie", id);
+      this.$router.push("/select");
     }
   },
   created: function() {
     this.hotMovie = this.$store.state.playingList;
     this.futureMovie = this.$store.state.comingList;
-
+    this.fireMovie = this.$store.state.fireMovie;
+    this.exhibitions = this.$store.state.exhibitions;
     //即將上映
     /*var urlT =
       "https://api.themoviedb.org/3/movie/upcoming?api_key=" +
@@ -170,11 +188,29 @@ export default {
         this.futureMovie.splice(8);
       }
     },
-    hotMovie: function() {
+    /*hotMovie: function() {
       if (this.hotMovie.length > 8) {
-        let obj =JSON.parse(JSON.stringify(this.hotMovie));
+        let obj = JSON.parse(JSON.stringify(this.hotMovie));
         obj.splice(8);
-        this.hotMovie = obj
+        this.hotMovie = obj;
+      }
+    },*/
+    exhibitions: function() {
+      let exhibitions = this.$store.state.exhibitions;
+      let fireMovie = this.$store.state.fireMovie;
+      let todayMovie = [];
+      let aa = [];
+      for (let i in exhibitions) {
+        aa.push(exhibitions[i].MovieID);
+      }
+      for (let z in aa) {
+        for (let x in fireMovie) {
+          if (aa[z] === fireMovie[x].id) {
+            todayMovie.push(fireMovie[x]);
+            console.log(todayMovie);
+            this.hotMovie = todayMovie;
+          }
+        }
       }
     }
   }

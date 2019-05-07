@@ -63,6 +63,7 @@
           </el-col>
         </el-row>
       </div>
+      <el-col :span="4"></el-col>
     </el-col>
     <el-col :span="1"></el-col>
     <el-col :md="8" :xs="0" class="booking-level-childeren2">
@@ -78,7 +79,9 @@
             <p>{{movie[0].title}}</p>
             <i class="el-icon-star-on">{{movie[0].rating.average}}</i>
             <p>影院：{{cinema.cinema}}</p>
-            <p>影廳：1號廳</p>
+            <p>影廳：{{halls.name}}</p>
+            <p>時間: {{exhibitions.time}}</p>
+            <p>總價: {{price}}</p>
           </el-col>
           <el-col :span="24" class="booking-seat-area p-ch">
             <p>座位：一次最多選取五個</p>
@@ -89,8 +92,9 @@
             >{{currentSeat.row+1}}列,{{currentSeat.col+1}}座</p>
           </el-col>
           <el-col :span="24" style="border-top: 2px dashed #eee;">
+            <el-input v-model="email" placeholder="信箱"></el-input>
             <p style="text-align:right; margin-top:20px;">
-              <el-button type="primary" round>訂票</el-button>
+              <el-button type="primary" round @click="clickTick">訂票</el-button>
             </p>
           </el-col>
         </el-row>
@@ -99,6 +103,7 @@
   </el-row>
 </template>
 <script>
+import db from "../firebase.js";
 export default {
   data() {
     return {
@@ -124,30 +129,53 @@ export default {
       seatCol: 15,
       value: "",
       movie: "",
-      cinema: ""
+      cinema: "",
+      halls: [],
+      exhibitions: [],
+      price: 0,
+      email: "",
+      time: ""
     };
   },
   created: function() {
+    var date = new Date();
+    var year = date.getFullYear(); //獲取當前年份
+    var mon = date.getMonth() + 1; //獲取當前月份
+    var da = date.getDate(); //獲取當前日
+    var h = date.getHours(); //獲取小時
+    var m = date.getMinutes(); //獲取分鐘
+
+    var time = year + "-" + mon + "-" + da + " " + h + ":" + m;
+    this.time = time;
+    console.log(time);
     //從store取出電影ID
     let movieID = this.$store.state.movieID;
     let allMovie = this.$store.state.playingList;
-    let Arr = []
-    this.movie = Arr
-    for(let i in allMovie){
-      if(allMovie[i].id === movieID){
-        Arr.push(allMovie[i])
-        console.log(Arr)
+    let halls = this.$store.state.halls;
+    let Arr = [];
+    this.movie = Arr;
+    for (let i in allMovie) {
+      if (allMovie[i].id === movieID) {
+        Arr.push(allMovie[i]);
       }
     }
     //store取出影院
     let cinemaID = this.$store.state.cinemaID;
     let cinema = this.$store.state.cinema;
-    this.cinema = cinema[parseInt(cinemaID - 1)];
-    console.log(this.cinema);
+    for (let i in cinema) {
+      if (cinema[i].id === cinemaID) {
+        this.cinema = cinema[i];
+      }
+    }
+    for (let i in halls) {
+      if (cinemaID === halls[i].cinemaID) {
+        this.halls = halls[i];
+      }
+    }
     //ajax 取出
-    let seatRow = 10;
-    let seatCol = 15;
-    let oldArray = this.oldArray;
+    let seatRow = this.halls.primaryRow;
+    let seatCol = this.halls.primaryCol;
+    let oldArray = this.halls.occupied;
     //到這裡
     this.seatRow = seatRow;
     this.seatCol = seatCol;
@@ -161,7 +189,19 @@ export default {
       seatArray[row][col] = oldArray[i].status;
     }
     this.seatArray = seatArray;
-    console.log(this.seatArray);
+    let aa = [];
+    let exhibitions = this.$store.state.exhibitions;
+    for (let i in exhibitions) {
+      if (movieID === exhibitions[i].movieID) {
+        aa.push(exhibitions[i]);
+      }
+    }
+    for (let i in aa) {
+      if (aa[i].cinemaID === cinemaID) {
+        this.exhibitions = aa[i];
+      }
+    }
+    console.log(this.exhibitions);
   },
   methods: {
     clickSeat(row, col) {
@@ -195,8 +235,89 @@ export default {
       }
       //更新seatArray
       this.seatArray = newSeat.slice();
+      this.price = this.currentSeat.length * 230;
+    },
+    clickTick() {
+      let setData = {};
+      let orderRef = db.db.collection("orders").doc();
+      let ticket = db.db.collection("tickets").doc();
+      let ticketsIDs = [];
+      for (let i = 0; i < this.currentSeat.length; i++) {
+        let tack = {};
+        let c = db.db.collection("tickets").doc().id;
+        tack["cinemaID"] = this.cinema;
+        tack["exhibitionID"] = "exhibition01";
+        tack["hallID"] = this.halls.id;
+        tack["id"] = c;
+        tack["movieID"] = this.$store.state.movieID;
+        tack["orderID"] = orderRef.id;
+        tack["price"] = 230;
+        tack["purchasedEmail"] = this.email;
+        tack["ticketCol"] = this.seatCol;
+        tack["ticketRow"] = this.seatRow;
+        tack["time"] = this.time;
+        ticketsIDs.push(c);
+        console.log(tack);
+        ticket.set(tack);
+      }
+      setData["exhibitionID"] = "exhibition01";
+      setData["purchasedEmail"] = this.email;
+      setData["id"] = orderRef.id;
+      setData["hallID"] = this.halls.id;
+      setData["total_price"] = this.price;
+      setData["price"] = 230;
+      setData["time"] = this.time;
+      setData["ticketsIDs"] = ticketsIDs;
+      console.log(setData);
+      orderRef.set(setData);
+      this.$message({
+        message: "訂票成功",
+        type: "success"
+      });
+      return;
+      /*var transporter = nodemailer.createTransport({
+        host: "smtp.163.com",
+        port: 8080,
+        secureConnection: true,
+        // 我们需要登录到网页邮箱中，然后配置SMTP和POP3服务器的密码
+        auth: {
+          user: 'guiqiuhaoyong@gmail.com',
+          pass: 'asdfsdaf8985afsd'
+        }
+      });
+      var to_name = "dj";
+      var message = "你好！";
+
+      var sendHtml = `<BODY style="MARGIN: 10px">
+          <DIV>
+            <h1>電影名：${this.movie[0].title}</h1>
+            <h2>影院：  ${this.cinema.cinema}</h2>
+            <h2>放映廳：${this.halls.name}</h2>
+            <h2>座位：${tickets}</h2>
+            <h1>總價：${this.price}</h1>
+            `;
+
+      var mailOptions = {
+        // 发送邮件的地址
+        from: 'guiqiuhaoyong@gmail.com', // login user must equal to this user
+        // 接收邮件的地址
+        to: "jj860528@gmail.com", // xrj0830@gmail.com
+        // 邮件主题
+        subject: "你有一条新消息",
+        // 以HTML的格式显示，这样可以显示图片、链接、字体颜色等信息
+        html: sendHtml
+      };
+
+      transporter.sendMail(mailOptions, (error, info = {}) => {
+        console.log(error, info)
+        if (error) {
+          return console.log(error);
+        }
+        console.log("Message sent");
+      });*/
     }
-  }
+  },
+  watch: {}
 };
 </script>
 <style scoped>

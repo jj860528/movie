@@ -11,12 +11,16 @@ export default new Vuex.Store({
     movieID: "399361",
     cinemaID: "01",
     cinema: all.Arr,
+    fireMovie:all.fireMovie,
     comingList: all.comingListArr,
     playingList: all.playingListArr,
     allMovie:all.playingListArr,
-    weeklyList: all.weekingListArr
+    weeklyList: all.weekingListArr,
+    halls:all.halls,
+    exhibitions:all.exhibitions
   },
   mutations: {
+
     indexPage(state, page) {
       this.state.indexPage = page;
     },
@@ -37,6 +41,10 @@ export default new Vuex.Store({
     },
     fireWeeking(state, week) {
       this.state.weeklyList = week
+    },
+    fireMovie(state, movie){
+      console.log(movie)
+      this.state.fireMovie = movie
     }
   },
   getters: {

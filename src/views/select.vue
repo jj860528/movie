@@ -62,7 +62,8 @@ export default {
       src: "",
       alt: "",
       Arr:null,
-      content:""
+      content:"",
+      exhibitions:[]
     };
   },
   methods: {
@@ -79,8 +80,28 @@ export default {
     }
   },
   created: function() {
+    this.cinema = this.$store.state.cinema;
     let movieID = this.$store.state.movieID;
     let allMovie = this.$store.state.playingList;
+    let exhibitions = this.$store.state.exhibitions
+    let cinemaAll = this.$store.state.cinema;
+    let aa = []
+    let cc = []
+    for(let i in exhibitions){
+      let bb =[]
+      if(movieID === exhibitions[i].movieID){
+        aa.push(exhibitions[i].cinemaID)
+      }
+    }
+    for(let i in cinemaAll){
+      for(let x in aa){
+        if(cinemaAll[i].id === aa[x]){
+          cc.push(cinemaAll[i])
+        }
+      }
+    }
+    this.cinema = cc
+    console.log(aa)
     let Arr = []
     this.movie = Arr
     for(let i in allMovie){
@@ -105,7 +126,7 @@ export default {
       .catch(err => {
         console.log(err);
       });*/
-    this.cinema = this.$store.state.cinema;
+    
   },
 };
 </script>
