@@ -93,6 +93,7 @@
           </el-col>
           <el-col :span="24" style="border-top: 2px dashed #eee;">
             <el-input v-model="email" placeholder="信箱"></el-input>
+            <el-input v-model="card" placeholder="信用卡"></el-input>
             <p style="text-align:right; margin-top:20px;">
               <el-button type="primary" round @click="clickTick">訂票</el-button>
             </p>
@@ -134,7 +135,8 @@ export default {
       exhibitions: [],
       price: 0,
       email: "",
-      time: ""
+      time: "",
+      card:""
     };
   },
   created: function() {
