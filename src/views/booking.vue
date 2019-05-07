@@ -167,6 +167,7 @@ export default {
         this.cinema = cinema[i];
       }
     }
+    console.log(this.cinema);
     for (let i in halls) {
       if (cinemaID === halls[i].cinemaID) {
         this.halls = halls[i];
@@ -196,6 +197,7 @@ export default {
         aa.push(exhibitions[i]);
       }
     }
+    console.log(aa);
     for (let i in aa) {
       if (aa[i].cinemaID === cinemaID) {
         this.exhibitions = aa[i];
@@ -257,7 +259,6 @@ export default {
         tack["ticketRow"] = this.seatRow;
         tack["time"] = this.time;
         ticketsIDs.push(c);
-        console.log(tack);
         ticket.set(tack);
       }
       setData["exhibitionID"] = "exhibition01";
@@ -268,26 +269,12 @@ export default {
       setData["price"] = 230;
       setData["time"] = this.time;
       setData["ticketsIDs"] = ticketsIDs;
-      console.log(setData);
       orderRef.set(setData);
       this.$message({
         message: "訂票成功",
         type: "success"
       });
       return;
-      /*var transporter = nodemailer.createTransport({
-        host: "smtp.163.com",
-        port: 8080,
-        secureConnection: true,
-        // 我们需要登录到网页邮箱中，然后配置SMTP和POP3服务器的密码
-        auth: {
-          user: 'guiqiuhaoyong@gmail.com',
-          pass: 'asdfsdaf8985afsd'
-        }
-      });
-      var to_name = "dj";
-      var message = "你好！";
-
       var sendHtml = `<BODY style="MARGIN: 10px">
           <DIV>
             <h1>電影名：${this.movie[0].title}</h1>
@@ -296,25 +283,16 @@ export default {
             <h2>座位：${tickets}</h2>
             <h1>總價：${this.price}</h1>
             `;
+      Email.send({
+        Host: "smtp.yourisp.com",
+        Username: "youdiandongxi123465@gmail.com",
+        Password: "sdfsdfsdfsdfv",
+        To: "jj860528@gmail.com",
+        From: "youdiandongxi123465@gmail.com",
+        Subject: "This is the subject",
+        Body: "And this is the body"
+      }).then(message => alert(message));
 
-      var mailOptions = {
-        // 发送邮件的地址
-        from: 'guiqiuhaoyong@gmail.com', // login user must equal to this user
-        // 接收邮件的地址
-        to: "jj860528@gmail.com", // xrj0830@gmail.com
-        // 邮件主题
-        subject: "你有一条新消息",
-        // 以HTML的格式显示，这样可以显示图片、链接、字体颜色等信息
-        html: sendHtml
-      };
-
-      transporter.sendMail(mailOptions, (error, info = {}) => {
-        console.log(error, info)
-        if (error) {
-          return console.log(error);
-        }
-        console.log("Message sent");
-      });*/
     }
   },
   watch: {}

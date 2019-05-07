@@ -1,25 +1,13 @@
-var nodemailer = require('nodemailer');
-
-var transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'guiqiuhaoyong@gmail.com',
-        pass: 'asdfsdaf8985afsd'
-    }
-});
-
-var mailOptions = {
-    from: 'guiqiuhaoyong@gmail.com', // sender address
-    to: 'jj860528@gmail.com', // list of receivers
-    subject: 'Hello ✔', // Subject line
-    text: 'Hello world ✔', // plaintext body
-    html: '<b>Hello world ✔</b>' // html body
-};
-
-transporter.sendMail(mailOptions, function(error, info){
-    if(error){
-        console.log(error);
-    }else{
-        console.log('Message sent: ' + info.response);
-    }
-});
+const email = require('emailjs')
+var server = email.server.connect({
+    user: "jj860528_gmail_com", // 开启POP3/SMTP服务的邮箱
+    password: "user_gM05wJszt7OtrtFgQHnu1", // 授权码填在这里
+    host: "smtp.qq.com", // 这里以QQ邮箱为例
+    ssl: true, // 开启SSL
+})
+server.send({
+    text:    "i hope this works",
+    from:    "jj860528_gmail_com",
+    to:      "jj860528_gmail_com",
+    subject: "testing emailjs"
+    }, function(err, message) { console.log(err || message); });

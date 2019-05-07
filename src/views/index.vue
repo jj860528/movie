@@ -28,9 +28,6 @@
               </el-menu>
             </el-col>
             <el-col :xl="4" :md="3" :xs="2">
-              <router-link to="/login">
-                <i class="iconfont user">&#xe6a3;</i>
-              </router-link>
             </el-col>
           </el-row>
         </el-col>
