@@ -3,15 +3,15 @@
     <el-col :md="15" :xs="24" class="booking-level-children">
       <el-row type="flex" justify="center">
         <el-col :span="6">
-          <img src="../assets/unselected.png">
+          <img src="../assets/unselected.png" />
           <span class="booking-seattext">可選座位</span>
         </el-col>
         <el-col :span="6">
-          <img src="../assets/bought.png">
+          <img src="../assets/bought.png" />
           <span class="booking-seattext">以選座位</span>
         </el-col>
         <el-col :span="6">
-          <img src="../assets/selected.png">
+          <img src="../assets/selected.png" />
           <span class="booking-seattext">不可選座位</span>
         </el-col>
       </el-row>
@@ -23,42 +23,42 @@
       <div class="cinema">
         <!--用2個迴圈循環出影院-->
         <el-row
-          v-for="(row) in seatRow"
+          v-for="row in seatRow"
           :key="row"
           type="flex"
           :gutter="0"
           justify="center"
           ref="row.index"
         >
-          <font class="booking-row">{{row}}</font>
-          <el-col v-for="(col) in seatCol" :key="col">
+          <font class="booking-row">{{ row }}</font>
+          <el-col v-for="col in seatCol" :key="col">
             <div class="booking-seat">
-              <div v-if="seatArray[row-1][col-1] == 0">
+              <div v-if="seatArray[row - 1][col - 1] == 0">
                 <img
                   :plain="true"
                   src="../assets/unselected.png"
                   alt
-                  @click="clickSeat(row-1,col-1)"
+                  @click="clickSeat(row - 1, col - 1)"
                   class="booking-seatimg"
-                >
+                />
               </div>
-              <div v-else-if="seatArray[row-1][col-1] == 1">
+              <div v-else-if="seatArray[row - 1][col - 1] == 1">
                 <img
                   src="../assets/selected.png"
                   alt
-                  @click="clickSeat(row-1,col-1)"
+                  @click="clickSeat(row - 1, col - 1)"
                   class="booking-seatimg"
-                >
+                />
               </div>
-              <div v-else-if="seatArray[row-1][col-1] == 2">
+              <div v-else-if="seatArray[row - 1][col - 1] == 2">
                 <img
                   src="../assets/bought.png"
                   alt
-                  @click="clickSeat(row-1,col-1)"
+                  @click="clickSeat(row - 1, col - 1)"
                   class="booking-seatimg"
-                >
+                />
               </div>
-              <div v-else-if="seatArray[row-1][col-1] == 3"></div>
+              <div v-else-if="seatArray[row - 1][col - 1] == 3"></div>
             </div>
           </el-col>
         </el-row>
@@ -71,17 +71,17 @@
         <el-row>
           <el-col :span="12">
             <img
-              :src="'https://images.weserv.nl/?url='+movie[0].images.small"
+              :src="'https://images.weserv.nl/?url=' + movie[0].images.small"
               class="booking-movieTicket-img"
-            >
+            />
           </el-col>
           <el-col :span="12" class="p-ch">
-            <p>{{movie[0].title}}</p>
-            <i class="el-icon-star-on">{{movie[0].rating.average}}</i>
-            <p>影院：{{cinema.cinema}}</p>
-            <p>影廳：{{halls.name}}</p>
-            <p>時間: {{exhibitions.time}}</p>
-            <p>總價: {{price}}</p>
+            <p>{{ movie[0].title }}</p>
+            <i class="el-icon-star-on">{{ movie[0].rating.average }}</i>
+            <p>影院：{{ cinema.cinema }}</p>
+            <p>影廳：{{ halls.name }}</p>
+            <p>時間: {{ exhibitions.time }}</p>
+            <p>總價: {{ price }}</p>
           </el-col>
           <el-col :span="24" class="booking-seat-area p-ch">
             <p>座位：一次最多選取五個</p>
@@ -89,12 +89,16 @@
               v-for="(currentSeat, index) in currentSeat"
               :key="index"
               class="booking-movieTicket"
-            >{{currentSeat.row+1}}列,{{currentSeat.col+1}}座</p>
+            >
+              {{ currentSeat.row + 1 }}列,{{ currentSeat.col + 1 }}座
+            </p>
           </el-col>
           <el-col :span="24" style="border-top: 2px dashed #eee;">
             <el-input v-model="email" placeholder="信箱"></el-input>
             <p style="text-align:right; margin-top:20px;">
-              <el-button type="primary" round @click="clickTick">訂票</el-button>
+              <el-button type="primary" round @click="clickTick"
+                >訂票</el-button
+              >
             </p>
           </el-col>
         </el-row>
@@ -292,7 +296,6 @@ export default {
         Subject: "This is the subject",
         Body: "And this is the body"
       }).then(message => alert(message));
-
     }
   },
   watch: {}

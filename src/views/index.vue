@@ -3,11 +3,19 @@
     <el-header class="header">
       <el-row type="flex" justify="center" :gutter="24">
         <el-col :xl="16" :md="16" :xs="24">
-          <el-row type="flex" justify="space-between" style="text-align : center; ">
+          <el-row
+            type="flex"
+            justify="space-between"
+            style="text-align : center; "
+          >
             <el-col :xl="4" :md="3" :xs="4">
               <router-link to="/">
-                <img :src="title" alt="UU電影" class="logo">
-                <img src="../assets/mini-title.png" alt="UU電影" class="logo-mini">
+                <img :src="title" alt="UU電影" class="logo" />
+                <img
+                  src="../assets/mini-title.png"
+                  alt="UU電影"
+                  class="logo-mini"
+                />
               </router-link>
             </el-col>
             <el-col :xl="16" :md="10" :xs="18">
@@ -27,8 +35,7 @@
                 <el-menu-item index="/cinema">影院</el-menu-item>
               </el-menu>
             </el-col>
-            <el-col :xl="4" :md="3" :xs="2">
-            </el-col>
+            <el-col :xl="4" :md="3" :xs="2"> </el-col>
           </el-row>
         </el-col>
       </el-row>
@@ -37,14 +44,19 @@
       <el-row type="flex" justify="center" :gutter="24">
         <el-col :xl="16" :md="16" :xs="24">
           <transition name="fade">
-            <router-view/>
+            <router-view />
           </transition>
         </el-col>
       </el-row>
     </el-main>
     <el-footer class="footer">
-      <p class="footer-txt">轉載內容版權歸作者及來源網站所有，本站原創內容轉載請註明來源，商業媒體及紙媒請先聯繫：UUmovie@gmail.com</p>
-      <p class="footer-mix">本網站內容享有著作權，禁止侵害，違者必究。 © 2019 UUmovie All Rights Reserved.</p>
+      <p class="footer-txt">
+        轉載內容版權歸作者及來源網站所有，本站原創內容轉載請註明來源，商業媒體及紙媒請先聯繫：UUmovie@gmail.com
+      </p>
+      <p class="footer-mix">
+        本網站內容享有著作權，禁止侵害，違者必究。 © 2019 UUmovie All Rights
+        Reserved.
+      </p>
     </el-footer>
   </el-container>
 </template>
@@ -67,7 +79,7 @@ export default {
   },
   created: function() {
     this.activeIndex = this.$route.path;
-    this.fireMovie = this.$store.state.fireMovie
+    this.fireMovie = this.$store.state.fireMovie;
   },
   watch: {
     $route(to) {

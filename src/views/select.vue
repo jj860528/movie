@@ -4,33 +4,52 @@
       <el-row>
         <el-col :span="6">
           <img
-            :src="'https://images.weserv.nl/?url='+movie[0].images.small"
+            :src="'https://images.weserv.nl/?url=' + movie[0].images.small"
             :alt="movie[0].title"
             class="select-movieTicket-img"
-          >
+          />
         </el-col>
         <el-col :span="7" style="color:#fff; margin-top:30px">
           <el-row>
             <el-col :span="24">
-              <p class="select-title">{{movie[0].title}}</p>
+              <p class="select-title">{{ movie[0].title }}</p>
             </el-col>
-            <el-col :span="24" style = "margin-top: 25px ;">
+            <el-col :span="24" style="margin-top: 25px ;">
               評分：
-              <span>{{movie[0].rating.average}}</span>
+              <span>{{ movie[0].rating.average }}</span>
             </el-col>
-            <el-col :span="3" v-for="(genres, o) in movie[0].genres" :key="o" style = "margin-top: 25px ;">{{genres}}</el-col>
+            <el-col
+              :span="3"
+              v-for="(genres, o) in movie[0].genres"
+              :key="o"
+              style="margin-top: 25px ;"
+              >{{ genres }}</el-col
+            >
           </el-row>
         </el-col>
-          <el-col :span="8" style="color:#fff; margin-top:30px">
+        <el-col :span="8" style="color:#fff; margin-top:30px">
           <el-row :gutter="50">
             <el-col :span="24"><h1>主演</h1></el-col>
-            <el-col :span="8" v-for="(person,o) in movie[0].casts" :key = "o" class = "select-person-img-father">
-              <el-tooltip class="item" effect="dark" :content="person.name" placement="top-end">
-                <img :src="'https://images.weserv.nl/?url='+person.avatars.small"  class = "select-person-img">
+            <el-col
+              :span="8"
+              v-for="(person, o) in movie[0].casts"
+              :key="o"
+              class="select-person-img-father"
+            >
+              <el-tooltip
+                class="item"
+                effect="dark"
+                :content="person.name"
+                placement="top-end"
+              >
+                <img
+                  :src="'https://images.weserv.nl/?url=' + person.avatars.small"
+                  class="select-person-img"
+                />
               </el-tooltip>
             </el-col>
           </el-row>
-          </el-col>
+        </el-col>
       </el-row>
     </el-col>
     <el-col :span="24" style=" margin-top:50px">
@@ -41,12 +60,29 @@
         @current-change="handleCurrentChange"
         size="medium"
       >
-        <el-table-column fixed column-key="id" prop="cinema" label="影院" width="240"></el-table-column>
-        <el-table-column prop="phone" label="電話" width="260"></el-table-column>
-        <el-table-column fixed prop="add" label="地址" width="500"></el-table-column>
+        <el-table-column
+          fixed
+          column-key="id"
+          prop="cinema"
+          label="影院"
+          width="240"
+        ></el-table-column>
+        <el-table-column
+          prop="phone"
+          label="電話"
+          width="260"
+        ></el-table-column>
+        <el-table-column
+          fixed
+          prop="add"
+          label="地址"
+          width="500"
+        ></el-table-column>
         <el-table-column fixed="right" prop="id" label="購票" width="160">
           <template slot-scope="scope">
-            <el-button @click="handleClick(scope.row)" type="text" size="small">購票</el-button>
+            <el-button @click="handleClick(scope.row)" type="text" size="small"
+              >購票</el-button
+            >
           </template>
         </el-table-column>
       </el-table>
@@ -61,9 +97,9 @@ export default {
       movie: [],
       src: "",
       alt: "",
-      Arr:null,
-      content:"",
-      exhibitions:[]
+      Arr: null,
+      content: "",
+      exhibitions: []
     };
   },
   methods: {
@@ -83,31 +119,29 @@ export default {
     this.cinema = this.$store.state.cinema;
     let movieID = this.$store.state.movieID;
     let allMovie = this.$store.state.playingList;
-    let exhibitions = this.$store.state.exhibitions
+    let exhibitions = this.$store.state.exhibitions;
     let cinemaAll = this.$store.state.cinema;
-    let aa = []
-    let cc = []
-    for(let i in exhibitions){
-      let bb =[]
-      if(movieID === exhibitions[i].movieID){
-        aa.push(exhibitions[i].cinemaID)
+    let aa = [];
+    let cc = [];
+    for (let i in exhibitions) {
+      if (movieID === exhibitions[i].movieID) {
+        aa.push(exhibitions[i].cinemaID);
       }
     }
-    for(let i in cinemaAll){
-      for(let x in aa){
-        if(cinemaAll[i].id === aa[x]){
-          cc.push(cinemaAll[i])
+    for (let i in cinemaAll) {
+      for (let x in aa) {
+        if (cinemaAll[i].id === aa[x]) {
+          cc.push(cinemaAll[i]);
         }
       }
     }
-    this.cinema = cc
-    console.log(aa)
-    let Arr = []
-    this.movie = Arr
-    for(let i in allMovie){
-      if(allMovie[i].id === movieID){
-        Arr.push(allMovie[i])
-        console.log(Arr)
+    console.log(aa);
+    let Arr = [];
+    this.movie = Arr;
+    for (let i in allMovie) {
+      if (allMovie[i].id === movieID) {
+        Arr.push(allMovie[i]);
+        console.log(Arr);
       }
     }
     /*let TMDBmovie =
@@ -126,7 +160,6 @@ export default {
       .catch(err => {
         console.log(err);
       });*/
-    
-  },
+  }
 };
 </script>

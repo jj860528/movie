@@ -1,11 +1,11 @@
 <template>
   <div id="app" style="font-family:Microsoft YaHei;">
-    <router-view/>
+    <router-view />
   </div>
 </template>
 <script>
 export default {
-  name: "app",
+  name: "app"
 };
 </script>
 <style>

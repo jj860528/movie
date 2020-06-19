@@ -2,7 +2,11 @@
   <div v-if="show">
     <el-row :gutter="24">
       <el-col :xl="16" :md="16" :xs="24">
-        <el-row type="flex" justify="space-around" style="align-items: baseline; ">
+        <el-row
+          type="flex"
+          justify="space-around"
+          style="align-items: baseline; "
+        >
           <el-col :span="12">
             <div class="hotMovie-title">
               <p @click="movie">熱門電影</p>
@@ -21,17 +25,28 @@
             :xl="5"
             :md="5"
             :xs="9"
-            v-for="(movie ,index) in hotMovie"
+            v-for="(movie, index) in hotMovie"
             :key="index"
             class="movie"
             v-loading.fullscreen.lock="loading"
           >
-            <el-card :body-style="{ padding: '0px' }" :id="movie.id" shadow="hover">
-              <img :src="'https://images.weserv.nl/?url='+movie.images.small" class="image">
+            <el-card
+              :body-style="{ padding: '0px' }"
+              :id="movie.id"
+              shadow="hover"
+            >
+              <img
+                :src="'https://images.weserv.nl/?url=' + movie.images.small"
+                class="image"
+              />
               <div style="padding: 14px;">
-                <el-tooltip effect="dark" :content="movie.title" placement="top">
+                <el-tooltip
+                  effect="dark"
+                  :content="movie.title"
+                  placement="top"
+                >
                   <div class="movieTitleWindow">
-                    <span class="movie-txt">{{movie.title}}</span>
+                    <span class="movie-txt">{{ movie.title }}</span>
                   </div>
                 </el-tooltip>
               </div>
@@ -60,11 +75,17 @@
       <el-col :xl="6" :xs="0" :offset="1">
         <p class="today" @click="movie">今日票房</p>
         <ul style="list-style: none; counter-reset: li;">
-          <li v-for="(todayHots ,o) in  hotMovie" :key="o" class="today-text">{{todayHots.title}}</li>
+          <li v-for="(todayHots, o) in hotMovie" :key="o" class="today-text">
+            {{ todayHots.title }}
+          </li>
         </ul>
       </el-col>
       <el-col :xl="16" :md="16" :xs="24">
-        <el-row type="flex" justify="space-around" style="align-items: baseline; ">
+        <el-row
+          type="flex"
+          justify="space-around"
+          style="align-items: baseline; "
+        >
           <el-col :span="12">
             <div class="future-title">
               <p>即將上映</p>
@@ -79,17 +100,28 @@
             :xl="5"
             :md="5"
             :xs="9"
-            v-for="(movie , o) in futureMovie"
+            v-for="(movie, o) in futureMovie"
             :key="o"
             class="movie"
             v-loading.fullscreen.lock="loading"
           >
-            <el-card :body-style="{ padding: '0px' }" :id="movie.id" shadow="hover">
-              <img :src="'https://images.weserv.nl/?url='+movie.images.small" class="image">
+            <el-card
+              :body-style="{ padding: '0px' }"
+              :id="movie.id"
+              shadow="hover"
+            >
+              <img
+                :src="'https://images.weserv.nl/?url=' + movie.images.small"
+                class="image"
+              />
               <div style="padding: 14px;">
-                <el-tooltip effect="dark" :content="movie.title" placement="top">
+                <el-tooltip
+                  effect="dark"
+                  :content="movie.title"
+                  placement="top"
+                >
                   <div class="movieTitleWindow">
-                    <span class="movie-txt">{{movie.title}}</span>
+                    <span class="movie-txt">{{ movie.title }}</span>
                   </div>
                 </el-tooltip>
               </div>
@@ -101,17 +133,18 @@
         <p class="today" style="color:#ffb400!important">最受期待</p>
         <ul style="list-style: none; counter-reset: li;">
           <li
-            v-for="(futureMovies ,o) in  futureMovie"
+            v-for="(futureMovies, o) in futureMovie"
             :key="o"
             class="today-text"
-          >{{futureMovies.title}}</li>
+          >
+            {{ futureMovies.title }}
+          </li>
         </ul>
       </el-col>
     </el-row>
   </div>
 </template>
 <script>
-
 export default {
   data() {
     return {
@@ -144,7 +177,7 @@ export default {
     }
   },
   created: function() {
-    this.hotMovie = this.$store.state.playingList;
+    this.hotMovie = this.$store.state.playingList
     this.futureMovie = this.$store.state.comingList;
     this.fireMovie = this.$store.state.fireMovie;
     this.exhibitions = this.$store.state.exhibitions;
@@ -187,13 +220,11 @@ export default {
         this.futureMovie.splice(8);
       }
     },
-    /*hotMovie: function() {
+    hotMovie: function() {
       if (this.hotMovie.length > 8) {
-        let obj = JSON.parse(JSON.stringify(this.hotMovie));
-        obj.splice(8);
-        this.hotMovie = obj;
+        this.hotMovie.splice(8);
       }
-    },*/
+    },
     exhibitions: function() {
       let exhibitions = this.$store.state.exhibitions;
       let fireMovie = this.$store.state.fireMovie;

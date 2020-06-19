@@ -3,11 +3,19 @@
     <el-header class="header">
       <el-row type="flex" justify="center" :gutter="24">
         <el-col :xl="16" :md="16" :xs="24">
-          <el-row type="flex" justify="space-between" style="text-align : center; ">
+          <el-row
+            type="flex"
+            justify="space-between"
+            style="text-align : center; "
+          >
             <el-col :xl="4" :md="3" :xs="4">
               <router-link to="/">
-                <img :src="title" alt="UU電影" class="logo">
-                <img src="../assets/mini-title.png" alt="UU電影" class="logo-mini">
+                <img :src="title" alt="UU電影" class="logo" />
+                <img
+                  src="../assets/mini-title.png"
+                  alt="UU電影"
+                  class="logo-mini"
+                />
               </router-link>
             </el-col>
             <el-col :xl="16" :md="10" :xs="18">
@@ -33,7 +41,7 @@
       <el-row type="flex" justify="center" :gutter="24">
         <el-col :xl="16" :md="16" :xs="24">
           <transition name="fade">
-            <router-view/>
+            <router-view />
           </transition>
         </el-col>
       </el-row>

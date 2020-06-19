@@ -7,9 +7,9 @@ import home from "@/views/home.vue";
 import cinema from "@/views/cinema.vue";
 import booking from "@/views/booking.vue";
 import select from "@/views/select.vue";
-import admin from "@/views/admin.vue"
-import chseat from "@/views/chseat.vue"
-import managem from "@/views/managem.vue"
+import admin from "@/views/admin.vue";
+import chseat from "@/views/chseat.vue";
+import managem from "@/views/managem.vue";
 Vue.use(Router);
 
 export default new Router({

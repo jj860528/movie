@@ -4,7 +4,7 @@
       <el-col :span="24">
         <div id="windo">
           <router-link to="/">
-            <img :src="title" id="title" alt="UU電影">
+            <img :src="title" id="title" alt="UU電影" />
           </router-link>
           <el-row type="flex" class="row-bg" justify="center">
             <el-col :span="24">
@@ -16,12 +16,23 @@
               <el-col :span="24">
                 <div class="logintitle">帳號登入</div>
               </el-col>
-              <el-form :model="loginform" style="text-align: center; width:300px; margin:auto;">
+              <el-form
+                :model="loginform"
+                style="text-align: center; width:300px; margin:auto;"
+              >
                 <el-form-item>
-                  <el-input v-model="loginform.email" placeholder="帳號" type="email"></el-input>
+                  <el-input
+                    v-model="loginform.email"
+                    placeholder="帳號"
+                    type="email"
+                  ></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-input v-model="loginform.pwd" placeholder="密碼" type="password"></el-input>
+                  <el-input
+                    v-model="loginform.pwd"
+                    placeholder="密碼"
+                    type="password"
+                  ></el-input>
                 </el-form-item>
                 <el-form-item>
                   <el-button
@@ -30,7 +41,8 @@
                     @click="onLogin"
                     style="width:300px"
                     @keyup.enter.native="onLogin"
-                  >登入</el-button>
+                    >登入</el-button
+                  >
                 </el-form-item>
               </el-form>
               <el-row type="flex" class="windo2" justify="center">
@@ -41,13 +53,17 @@
                   <el-col :span="12">
                     <el-row>
                       <el-col :span="10">
-                        <a href="#" class="windo2Text" @click="Switch">進行註冊</a>
+                        <a href="#" class="windo2Text" @click="Switch"
+                          >進行註冊</a
+                        >
                       </el-col>
                       <el-col :span="3">
                         <p>or</p>
                       </el-col>
                       <el-col :span="10">
-                        <router-link to="/" style="text-align:left;">回首頁</router-link>
+                        <router-link to="/" style="text-align:left;"
+                          >回首頁</router-link
+                        >
                       </el-col>
                     </el-row>
                   </el-col>
@@ -60,15 +76,30 @@
               <el-col :span="24">
                 <div class="regsteredTitle">註冊</div>
               </el-col>
-              <el-form :model="regestered" style="text-align: center; width:300px; margin:auto;">
+              <el-form
+                :model="regestered"
+                style="text-align: center; width:300px; margin:auto;"
+              >
                 <el-form-item>
-                  <el-input v-model="regestered.email" placeholder="帳號" type="email"></el-input>
+                  <el-input
+                    v-model="regestered.email"
+                    placeholder="帳號"
+                    type="email"
+                  ></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-input v-model="regestered.password" placeholder="密碼" type="password"></el-input>
+                  <el-input
+                    v-model="regestered.password"
+                    placeholder="密碼"
+                    type="password"
+                  ></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-input v-model="regestered.pwd2" placeholder="請再次輸入密碼" type="password"></el-input>
+                  <el-input
+                    v-model="regestered.pwd2"
+                    placeholder="請再次輸入密碼"
+                    type="password"
+                  ></el-input>
                 </el-form-item>
                 <el-form-item>
                   <!--修改-->
@@ -89,7 +120,8 @@
                     @click="onRegistered"
                     style="width:300px"
                     @keyup.enter.native="onRegistered"
-                  >註冊</el-button>
+                    >註冊</el-button
+                  >
                 </el-form-item>
               </el-form>
               <el-row type="flex" class="regsteredwindow2" justify="center">

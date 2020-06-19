@@ -5,20 +5,41 @@
     </el-col>
     <el-col :span="4">
       <span>幾排座位</span>
-      <el-input v-model.number="inputrow" placeholder="請輸入列" :disabled="disabled"></el-input>
+      <el-input
+        v-model.number="inputrow"
+        placeholder="請輸入列"
+        :disabled="disabled"
+      ></el-input>
     </el-col>
     <el-col :span="4">
       <span>一排幾個</span>
-      <el-input v-model.number="inputcol" placeholder="請輸入個" :disabled="disabled"></el-input>
+      <el-input
+        v-model.number="inputcol"
+        placeholder="請輸入個"
+        :disabled="disabled"
+      ></el-input>
     </el-col>
     <el-col :span="4">
       <span>廳名</span>
-      <el-input v-model="name" placeholder="請輸入廳名" :disabled="disabled"></el-input>
+      <el-input
+        v-model="name"
+        placeholder="請輸入廳名"
+        :disabled="disabled"
+      ></el-input>
     </el-col>
     <el-col :span="4">
       <span>關聯影院</span>
-      <el-select v-model="cinemaID" placeholder="請選擇影院關聯" :disabled="disabled">
-        <el-option v-for="item in cinema" :key="item.id" :label="item.cinema" :value="item.id"></el-option>
+      <el-select
+        v-model="cinemaID"
+        placeholder="請選擇影院關聯"
+        :disabled="disabled"
+      >
+        <el-option
+          v-for="item in cinema"
+          :key="item.id"
+          :label="item.cinema"
+          :value="item.id"
+        ></el-option>
       </el-select>
     </el-col>
     <el-col :span="3">
@@ -28,25 +49,25 @@
       <div class="cinema" v-if="show">
         <!--用2個迴圈循環出影院-->
         <el-row
-          v-for="(row,index) in inputrow"
+          v-for="(row, index) in inputrow"
           :key="index"
           type="flex"
           :gutter="1"
           justify="center"
           ref="row.index"
         >
-          <font class="booking-row">{{row}}</font>
-          <el-col v-for="(col,index) in inputcol" :key="index">
+          <font class="booking-row">{{ row }}</font>
+          <el-col v-for="(col, index) in inputcol" :key="index">
             <div class="booking-seat">
-              <div v-if="seatArray[row-1][col-1] ==0">
+              <div v-if="seatArray[row - 1][col - 1] == 0">
                 <img
                   src="../assets/unselected.png"
                   alt
-                  @click="clickSeat(row-1,col-1)"
+                  @click="clickSeat(row - 1, col - 1)"
                   class="booking-seatimg"
-                >
+                />
               </div>
-              <div v-else-if="seatArray[row-1][col-1] == 3"></div>
+              <div v-else-if="seatArray[row - 1][col - 1] == 3"></div>
             </div>
           </el-col>
         </el-row>
@@ -101,13 +122,13 @@ export default {
       setData["occupied"] = this.currentSeat;
       setData["primaryCol"] = this.inputcol;
       setData["primaryRow"] = this.inputrow;
-      firehall.set(setData, function(err){
-          if(err){
-              alert('錯誤')
-              console.log(err)
-          }else{
-              console.log('成功')
-          }
+      firehall.set(setData, function(err) {
+        if (err) {
+          alert("錯誤");
+          console.log(err);
+        } else {
+          console.log("成功");
+        }
       });
     }
   },
