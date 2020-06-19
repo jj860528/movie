@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: './movie',
+    publicPath: '/movie',
     lintOnSave: true,
     css: {
         loaderOptions: {
